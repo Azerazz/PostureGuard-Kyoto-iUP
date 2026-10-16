@@ -10,7 +10,7 @@ export type Timeline = {
 };
 export type SceneMap = Record<string, React.FC<{d: number}>>;
 
-const DING = new Set(['married', 'love', 'cta', 'result2', 'twist2']);
+const DING = new Set(['married', 'love', 'cta', 'result2', 'twist2', 'judges']);
 
 export const useFonts = () => {
   const [handle] = useState(() => delayRender('fonts'));

@@ -47,3 +47,27 @@ Les commentaires « team Malik/Jade » vs « team Inès/Théo » font remonter l
 3. **Le chiffre choc à l'écran**, en gros.
 4. **Un retournement où le perso qui juge se fait piéger** : Théo et le bisou en colo de ses 6 ans.
 5. **Une fin qui fait taguer** : « Tag la personne qui… ».
+
+---
+
+# Sujets « on reste jusqu'au bout » : drague, taille, argent, alcool, drogues
+
+Ce qui retient : **un tabou + un chiffre précis + une étude au protocole absurde + un perso qui se ridiculise.**
+
+| Thème | Accroche | Histoire coloc | Source (à revérifier) |
+|---|---|---|---|
+| 🍺 Alcool | ✅ « Plus tu bois, plus tu te trouves beau… même sans alcool. » *(vidéo 3, produite)* | Malik drague le videur. | Bègue et al., 2013, prix Ig Nobel |
+| 📏 Taille | « Chaque centimètre en plus = un meilleur salaire. Les chercheurs ont calculé combien. » | Théo se met sur la pointe des pieds en entretien. | Judge & Cable, 2004 (≈ 789 $/an par pouce) |
+| 📏 Taille | « Les couples où la femme est plus grande sont bien plus rares que le hasard ne le voudrait. » | Jade en talons, Malik sur une chaise. | Stulp et al., 2013 |
+| 💘 Drague | « Sur Tinder, les mecs likent 6 profils sur 10. Les filles ? Moins de 5 sur 100. » | Malik swipe à droite sur une photo de lampe. | Tyson et al., 2016 |
+| 💘 Drague | « Les mecs croient qu'on les drague beaucoup plus souvent que c'est vrai. » | Malik persuadé que la boulangère l'aime. | Perilloux et al., 2012 |
+| 💸 Argent | « On t'a dit que gagner au loto ne rend pas heureux. C'est faux. » | Inès gagne 50 € au grattage et pleure de joie. | Lindqvist et al., 2020 |
+| 💸 Argent | « L'argent fait-il le bonheur ? Les deux chercheurs qui se disputaient ont fait l'étude ensemble. » | Débat Jade (oui) contre Théo (non). | Killingsworth, Kahneman & Mellers, 2023 |
+| 💊 « Drogue » | « Des rats ont préféré le sucre… à la cocaïne. » ⚠️ Étude sur des rats, à dire clairement. | Malik et son pot de pâte à tartiner à 3 h du matin. | Lenoir et al., 2007 |
+| 💊 « Drogue » | « L'expérience du "Parc à rats" : et si l'addiction venait de la solitude ? » ⚠️ Résultats discutés. | La coloc qui sauve Théo de son jeu vidéo. | Alexander, années 1980 (Rat Park) |
+| 🍺 Alcool | « Pourquoi tu angoisses le lendemain d'une soirée (la "hangxiety"). » | Inès relit ses messages de 2 h du matin. | Marsh et al., 2019 |
+
+**Garde-fous TikTok** (sinon la vidéo est cachée ou supprimée) :
+- **Drogues** : jamais de mode d'emploi, de quantités ni de produit montré positivement. Uniquement le cerveau, la science et l'humour. Mieux vaut des études sur des rats ou sur le sucre.
+- **Alcool** : ajoute toujours le bandeau « L'abus d'alcool est dangereux pour la santé » (déjà dans la vidéo 3).
+- **Sexe** : allusions seulement, rien d'explicite.

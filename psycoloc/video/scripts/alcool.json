@@ -1,0 +1,24 @@
+{
+  "title": "L'alcool te rend beau gosse… dans ta tête",
+  "source": "Bègue, Bushman, Zerhouni, Subra & Ourabah (2013), 'Beauty is in the eye of the beer holder': People who think they are drunk also think they are attractive, British Journal of Psychology — prix Ig Nobel 2013",
+  "tts": {"engine": "edge", "voice": "fr-FR-HenriNeural", "rate": "+38%", "pitch": "+30Hz"},
+  "gap": 0.08,
+  "scenes": [
+    {"id": "hook", "text": "Tu savais que des chercheurs français ont gagné un prix pour avoir prouvé que plus tu bois, plus tu te trouves *beau gosse* ? Et le pire, c'est qu'il n'y a même *pas besoin d'alcool*."},
+    {"id": "setup", "text": "Ce samedi soir, Malik a déjà bu *trois verres*, et il est persuadé d'être le mec le plus *charismatique* du bar."},
+    {"id": "drague", "text": "Il drague la serveuse, le DJ, et même *le videur*, avec sa meilleure *danse du robot*."},
+    {"id": "jade", "text": "Jade, elle, filme tout. *Pour la science*."},
+    {"id": "bar", "text": "Des chercheurs de *Grenoble* sont allés dans un bar, ont fait souffler les clients dans un *éthylotest*, puis leur ont demandé de noter leur propre beauté."},
+    {"id": "barres", "text": "Résultat : plus ils avaient d'alcool dans le sang, plus ils se trouvaient *beaux*."},
+    {"id": "lab", "text": "Pour vérifier, ils ont fait venir *86 hommes* au labo et leur ont servi un cocktail à la menthe."},
+    {"id": "lab2", "text": "Le piège : certains buvaient l'équivalent de *cinq à six shots de vodka*, d'autres *zéro alcool*. Et on mentait à la moitié d'entre eux sur ce qu'il y avait dans leur verre."},
+    {"id": "lab3", "text": "Ensuite, chacun devait tourner *une pub* pour une fausse boisson, puis se noter."},
+    {"id": "result", "text": "Ceux qui *croyaient* avoir bu se trouvaient plus séduisants… même quand leur verre était *sans alcool*."},
+    {"id": "judges", "text": "Mais quand *22 étudiants* ont regardé les vidéos, verdict : *aucune différence*. Ils n'étaient pas plus beaux. Juste plus *sûrs d'eux*."},
+    {"id": "reason", "text": "Pour les chercheurs, c'est un *effet placebo* : ton cerveau associe l'alcool à la confiance en toi… alors il te la donne dès que tu *crois* avoir bu."},
+    {"id": "twist", "text": "Le lendemain matin, Jade montre la vidéo à Malik."},
+    {"id": "twist2", "text": "Il découvre sa danse du robot… et le videur qui le porte dehors *comme un sac de patates*."},
+    {"id": "cta", "text": "Alors la prochaine fois que tu te trouves irrésistible après deux verres, souviens-toi : c'est *ton cerveau qui te ment*. Tag le pote qui devient *beau gosse* après minuit."},
+    {"id": "outro", "text": "Abonne-toi pour la suite des aventures de *la coloc*."}
+  ]
+}

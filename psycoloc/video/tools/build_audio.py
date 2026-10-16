@@ -1,13 +1,13 @@
 """Génère la voix off, aligne chaque mot et écrit la timeline des sous-titres.
 
-Usage : python3 -I tools/build_audio.py <dossier_projet> [modele_piper.onnx]
+Usage : python3 -I tools/build_audio.py <dossier_projet> <slug> [modele_piper.onnx]   (script : scripts/<slug>.json)
 
 Moteurs (script.json > tts.engine) :
   - "edge"  : voix neuronales Microsoft (fr-FR-HenriNeural…), horodatage des mots fourni par le service
   - "elevenlabs" : voix ElevenLabs (variable d'env. ELEVENLABS_API_KEY, tts.voice = voice_id), horodatage par caractère
   - "piper" : voix locale hors-ligne (passer le chemin du modèle .onnx), alignement par faster-whisper
 Dans le texte, *mot* = mot-clé affiché en jaune.
-Sorties : public/voice.wav, src/timeline.json
+Sorties : public/<slug>/voice.wav, src/timelines/<slug>.json
 """
 import asyncio
 import json
@@ -21,6 +21,7 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(sys.argv[1]).resolve()
+SLUG = sys.argv[2]
 SR = 24000
 FPS = 30
 LEAD = 0.25
@@ -140,7 +141,7 @@ def piper_scene(text, model, out):
     return [(w.start, w.end, w.word) for s in segs for w in s.words]
 
 
-script = json.loads((ROOT / "script.json").read_text())
+script = json.loads((ROOT / "scripts" / f"{SLUG}.json").read_text())
 cfg = script["tts"]
 tmp = Path(tempfile.mkdtemp())
 pieces, scenes, cursor = [np.zeros(int(LEAD * SR), np.float32)], [], LEAD
@@ -153,7 +154,7 @@ for sc in script["scenes"]:
     elif cfg["engine"] == "elevenlabs":
         bounds = elevenlabs_scene(spoken, cfg, out)
     else:
-        bounds = piper_scene(spoken, sys.argv[2], out)
+        bounds = piper_scene(spoken, sys.argv[3], out)
     a = decode(out)
     i0, i1 = trim_bounds(a)
     a = a[i0:i1]
@@ -172,9 +173,9 @@ for sc in script["scenes"]:
     cursor += dur + script["gap"]
 
 voice = np.concatenate(pieces)
-(ROOT / "public").mkdir(exist_ok=True)
+(ROOT / "public" / SLUG).mkdir(parents=True, exist_ok=True)
 pcm = (np.clip(voice, -1, 1) * 32767).astype(np.int16).tobytes()
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(ROOT / "public" / "voice.wav")], input=pcm, check=True)
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(ROOT / "public" / SLUG / "voice.wav")], input=pcm, check=True)
 total = len(voice) / SR + 1.0
-(ROOT / "src" / "timeline.json").write_text(json.dumps({"fps": FPS, "durationInFrames": int(np.ceil(total * FPS)), "scenes": scenes}, ensure_ascii=False, indent=1))
+(ROOT / "src" / "timelines" / f"{SLUG}.json").write_text(json.dumps({"fps": FPS, "durationInFrames": int(np.ceil(total * FPS)), "scenes": scenes}, ensure_ascii=False, indent=1))
 print(f"Durée totale : {total:.1f}s")

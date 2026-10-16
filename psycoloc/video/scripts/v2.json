@@ -1,0 +1,25 @@
+{
+  "title": "C'est quoi ton nombre ? (le faux détecteur de mensonges)",
+  "source": "Alexander & Fisher (2003), Truth and consequences: Using the bogus pipeline to examine sex differences in self-reported sexuality, Journal of Sex Research",
+  "tts": {"engine": "edge", "voice": "fr-FR-HenriNeural", "rate": "+38%", "pitch": "+30Hz"},
+  "gap": 0.08,
+  "scenes": [
+    {"id": "hook", "text": "Tu savais que quand on te demande ton *nombre de partenaires*, ta réponse change complètement selon que tu te crois branché ou non à un *détecteur de mensonges* ?"},
+    {"id": "couple", "text": "Inès et Théo sont en couple depuis trois mois, et ce soir, Théo pose *la question interdite* : c'est quoi ton nombre ?"},
+    {"id": "ines", "text": "Inès répond « *trois* », sans réfléchir. Un peu trop vite, même."},
+    {"id": "theo", "text": "Et Théo répond « *sept* »… en comptant un bisou en colo et une fille qui lui a souri à un mariage."},
+    {"id": "lab", "text": "En 2003, deux chercheurs américains ont posé cette question à environ *200 étudiants*, dans trois situations différentes."},
+    {"id": "cond1", "text": "Dans la première, ils pensaient que quelqu'un *pourrait lire* leurs réponses."},
+    {"id": "cond2", "text": "Dans la deuxième, tout était *anonyme*."},
+    {"id": "cond3", "text": "Et dans la troisième, on les branchait à un *détecteur de mensonges*. Sauf que la machine était *fausse*."},
+    {"id": "result", "text": "Résultat : quand elles pensaient être lues, les femmes déclaraient en moyenne *2,6* partenaires."},
+    {"id": "result2", "text": "Mais branchées à la fausse machine ? *4,4*. Presque *le double*."},
+    {"id": "men", "text": "Chez les hommes, la machine changeait *beaucoup moins* les réponses."},
+    {"id": "reason", "text": "Pour les chercheurs, la raison est simple : ce n'est pas une question de mensonge, mais de *jugement*. Sur ce sujet, on juge les femmes bien plus durement que les hommes."},
+    {"id": "round", "text": "Alors le cerveau arrondit… *vers le bas*."},
+    {"id": "twist", "text": "Pris de doute, Théo fabrique un détecteur de mensonges avec *une passoire* et un grille-pain."},
+    {"id": "twist2", "text": "Mais quand Inès lui demande l'âge de la fille du bisou en colo, la machine *s'emballe*. C'était *six ans*."},
+    {"id": "cta", "text": "Alors si tu veux le vrai nombre de ton partenaire, sache que la seule bonne réponse, c'est de *ne pas poser la question*. Tag la personne qui va *mentir* sur son nombre."},
+    {"id": "outro", "text": "Abonne-toi pour la suite des aventures de *la coloc*."}
+  ]
+}

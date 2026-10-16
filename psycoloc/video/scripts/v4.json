@@ -1,0 +1,22 @@
+{
+  "title": "Pourquoi elle te vole tes t-shirts",
+  "source": "Hofer, Chen & Schaller (2018), What your nose knows: Affective, cognitive, and physiological effects of romantic partner's scent, Journal of Personality and Social Psychology",
+  "tts": {"engine": "edge", "voice": "fr-FR-HenriNeural", "rate": "+38%", "pitch": "+30Hz"},
+  "gap": 0.08,
+  "scenes": [
+    {"id": "hook", "text": "Tu savais que si ta copine te pique tes t-shirts, ce n'est pas pour le style… c'est pour *ton odeur* ?"},
+    {"id": "setup", "text": "Depuis que Théo est en déplacement, Inès dort avec son vieux sweat. Et elle refuse *catégoriquement* de le laver."},
+    {"id": "theo", "text": "Théo, lui, cherche son *sweat préféré* depuis trois semaines."},
+    {"id": "lab", "text": "En 2018, des chercheurs canadiens ont demandé à des hommes de porter un t-shirt pendant *24 heures*, sans déodorant ni parfum."},
+    {"id": "lab2", "text": "Ensuite, leurs copines devaient sentir, sans savoir lequel, soit le t-shirt de leur copain, soit celui d'*un inconnu*, soit un t-shirt propre."},
+    {"id": "stress", "text": "Puis on les stressait volontairement avec un *faux entretien d'embauche* et du calcul mental."},
+    {"id": "result", "text": "Résultat : celles qui sentaient l'odeur de leur partenaire se sentaient *moins stressées*."},
+    {"id": "result2", "text": "Et quand elles reconnaissaient vraiment l'odeur, leur *cortisol*, l'hormone du stress, était plus bas."},
+    {"id": "stranger", "text": "Mais le plus surprenant : l'odeur d'*un inconnu* faisait monter leur cortisol."},
+    {"id": "reason", "text": "Pour les chercheurs, ton cerveau associe l'odeur de ton partenaire à *la sécurité*… même quand il n'est pas là."},
+    {"id": "twist", "text": "Alors Théo rentre enfin, et découvre Inès qui dort avec son sweat… et *trois de ses chaussettes*."},
+    {"id": "twist2", "text": "Et Malik, en voyant ça, cache immédiatement *son linge sale*. On ne sait jamais."},
+    {"id": "cta", "text": "Alors si quelqu'un te vole tes t-shirts, ce n'est pas un vol, c'est *une déclaration d'amour*. Tag la personne qui *porte tes affaires*."},
+    {"id": "outro", "text": "Abonne-toi pour la suite des aventures de *la coloc*."}
+  ]
+}

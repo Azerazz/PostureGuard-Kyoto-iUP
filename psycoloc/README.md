@@ -9,6 +9,7 @@ Chaîne TikTok (+ Reels + Shorts) de vulgarisation psychologique : chaque vidéo
 | Fichier | Usage |
 |---|---|
 | `video1_36-questions.mp4` | Vidéo 1, prête à publier (1080×1920, 68 s, son normalisé −14 LUFS) |
+| `video2_ton-nombre.mp4` | Vidéo 2 « C'est quoi ton nombre ? » (série couple) |
 | `video1_SANS-musique.mp4` | Même vidéo sans musique, pour ajouter un son TikTok dans l'app |
 | `echantillons_voix/` | 3 voix alternatives à écouter |
 | `Cover.png` | Couverture à choisir dans TikTok pour la vidéo 1 |
@@ -16,6 +17,8 @@ Chaîne TikTok (+ Reels + Shorts) de vulgarisation psychologique : chaque vidéo
 | `LogoFull.png` | Logo complet (bannière, Instagram, YouTube) |
 
 ---
+
+> 💑 Nouvelle série couple, drôle et tendancieuse : voir [`sujets_couple.md`](sujets_couple.md).
 
 ## 1. Identité
 
@@ -145,20 +148,20 @@ cd psycoloc/video
 npm install
 pip install edge-tts numpy          # (+ piper-tts faster-whisper pour le mode hors-ligne)
 
-# 1. écrire le script dans script.json (*mot* = mot-clé en jaune) — viser ~300 mots pour ~65 s
+# 1. écrire le script dans scripts/<slug>.json (*mot* = mot-clé en jaune), ~300 mots pour ~65 s
 # 2. voix + horodatage de chaque mot
-python3 tools/build_audio.py .
+python3 tools/build_audio.py . v3
 # 3. musique originale + bruitages (durée affichée à l'étape 2)
 python3 tools/build_music.py . 68
-# 4. scènes : une fonction par id dans src/Scenes.tsx
+# 4. scènes : src/videos/<slug>.tsx (une fonction par id), puis l'enregistrer dans src/Root.tsx
 npx remotion studio            # aperçu interactif
-npx remotion render src/index.ts Video out.mp4
+npx remotion render src/index.ts V3 out.mp4   # sans musique par défaut
 # 5. volume normalisé pour TikTok
 ffmpeg -i out.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5 -c:a aac final.mp4
 ```
 
 **Voix** : `fr-FR-HenriNeural` accélérée (+38 %) et légèrement plus aiguë (+30 Hz), réglée pour coller au ton des vidéos de référence (≈ 145 Hz, ≈ 4,6 mots/s). `edge-tts` passe par le service de lecture d'Edge (non officiel) : pour un usage commercial durable, prendre la même voix via l'API officielle **Azure Speech** (palier gratuit généreux) ou une voix **ElevenLabs**. Pas de clonage de la voix d'un autre créateur.
 
-**Passer à ElevenLabs** : dans `script.json`, mettre `"tts": {"engine": "elevenlabs", "voice": "<voice_id>"}`, puis `ELEVENLABS_API_KEY=... python3 tools/build_audio.py .` (les sous-titres se recalent tout seuls).
+**Passer à ElevenLabs** : dans `scripts/<slug>.json`, mettre `"tts": {"engine": "elevenlabs", "voice": "<voice_id>"}`, puis `ELEVENLABS_API_KEY=... python3 tools/build_audio.py . <slug>` (les sous-titres se recalent tout seuls).
 
 **Musique** : utiliser `video1_SANS-musique.mp4` et ajouter le son directement dans TikTok (sur la vidéo qui t'inspire : disque en bas à droite → « Utiliser ce son » / favoris ; à la publication : « Ajouter un son », volume musique ~10-15 %). C'est la voie légale pour réutiliser la même musique, et les sons de la bibliothèque TikTok aident la distribution.

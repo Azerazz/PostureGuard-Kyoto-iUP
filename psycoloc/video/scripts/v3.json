@@ -1,0 +1,23 @@
+{
+  "title": "Les poupées vaudou des couples affamés (hangry)",
+  "source": "Bushman, DeWall, Pond & Hanus (2014), Low glucose relates to greater aggression in married couples, PNAS",
+  "tts": {"engine": "edge", "voice": "fr-FR-HenriNeural", "rate": "+38%", "pitch": "+30Hz"},
+  "gap": 0.08,
+  "scenes": [
+    {"id": "hook", "text": "Tu savais que la plupart des disputes de couple ne viennent pas de ce que ton partenaire a dit… mais de ce que *tu n'as pas mangé* ?"},
+    {"id": "setup", "text": "Malik et Jade sont *enfin en couple*. Et ce soir, ils se disputent pour savoir qui a laissé *la porte du frigo* ouverte."},
+    {"id": "escalade", "text": "Dix minutes plus tard, Jade a ressorti *l'anniversaire oublié* de 2023, et Malik menace de dormir *sur le canapé*."},
+    {"id": "lab", "text": "En 2014, des chercheurs américains ont suivi *107 couples mariés* pendant 21 jours."},
+    {"id": "glucose", "text": "Chaque soir, ils mesuraient leur *taux de sucre* dans le sang."},
+    {"id": "doll", "text": "Et chacun recevait une *poupée vaudou* à l'effigie de son partenaire… avec *51 aiguilles*."},
+    {"id": "rule", "text": "La consigne : planter autant d'aiguilles que tu es *en colère* contre lui."},
+    {"id": "result", "text": "Résultat : plus le taux de sucre était bas, plus les poupées finissaient transformées en *hérissons*."},
+    {"id": "result2", "text": "Et en labo, les plus affamés envoyaient même des *bruits plus forts et plus longs* dans le casque de leur partenaire."},
+    {"id": "reason", "text": "Pour les chercheurs, la raison est simple : se contrôler demande de l'énergie, et le carburant du cerveau, c'est *le glucose*."},
+    {"id": "brain", "text": "Quand il n'y en a plus, ton cerveau *lâche le frein*… et tout ce que tu retenais sort d'un coup."},
+    {"id": "twist", "text": "Alors en pleine dispute, Malik a une idée de génie : il glisse *un paquet de chips* sous la porte de la chambre."},
+    {"id": "twist2", "text": "Deux minutes plus tard, Jade ouvre, la bouche pleine… et c'est elle qui *lui demande pardon*."},
+    {"id": "cta", "text": "Alors avant de dire à ton partenaire que c'est fini, *mange quelque chose*. Et envoie cette vidéo à la personne qui devient *méchante quand elle a faim*."},
+    {"id": "outro", "text": "Abonne-toi pour la suite des aventures de *la coloc*."}
+  ]
+}

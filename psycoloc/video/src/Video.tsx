@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {AbsoluteFill, Audio, Sequence, continueRender, delayRender, staticFile} from 'remotion';
 import {Subtitles} from './components/Subtitles';
-import {SCENES, SceneWrap} from './Scenes';
-import timeline from './timeline.json';
+import {SceneWrap} from './components/SceneWrap';
 
-const DING = new Set(['married', 'love', 'cta']);
+export type Timeline = {
+  fps: number;
+  durationInFrames: number;
+  scenes: {id: string; start: number; end: number; words: {t: string; s: number; e: number; k?: boolean}[]}[];
+};
+export type SceneMap = Record<string, React.FC<{d: number}>>;
+
+const DING = new Set(['married', 'love', 'cta', 'result2', 'twist2']);
 
 export const useFonts = () => {
   const [handle] = useState(() => delayRender('fonts'));
@@ -13,7 +19,8 @@ export const useFonts = () => {
   }, [handle]);
 };
 
-export const Video: React.FC<{music?: boolean}> = ({music = true}) => {
+/** Assemble une vidéo : scènes calées sur la voix + sous-titres (+ musique optionnelle). */
+export const Video: React.FC<{slug: string; scenes: SceneMap; timeline: Timeline; music?: boolean}> = ({slug, scenes: SCENES, timeline, music = false}) => {
   useFonts();
   const {fps, scenes, durationInFrames} = timeline;
   const starts = scenes.map((s, i) => (i === 0 ? 0 : Math.round(s.start * fps)));
@@ -34,7 +41,7 @@ export const Video: React.FC<{music?: boolean}> = ({music = true}) => {
       })}
       <Subtitles scenes={scenes} />
       {music && <Audio src={staticFile('music.wav')} volume={0.09} />}
-      <Audio src={staticFile('voice.wav')} volume={1} />
+      <Audio src={staticFile(`${slug}/voice.wav`)} volume={1} />
     </AbsoluteFill>
   );
 };

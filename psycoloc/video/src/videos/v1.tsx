@@ -1,8 +1,8 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {Bar, Lab, Room, Spotlight, Sunburst, Tablecloth, Vignette} from './components/Backgrounds';
-import {Character} from './components/Character';
-import {LogoMark, Wordmark} from './components/Logo';
+import {Bar, Lab, Room, Spotlight, Sunburst, Tablecloth, Vignette} from '../components/Backgrounds';
+import {Character} from '../components/Character';
+import {LogoMark, Wordmark} from '../components/Logo';
 import {
   BigText,
   Brain,
@@ -21,8 +21,8 @@ import {
   Sparkle,
   Warning,
   usePop,
-} from './components/Props';
-import {BG, C, FONT_TITLE, OL} from './theme';
+} from '../components/Props';
+import {BG, C, FONT_TITLE, OL} from '../theme';
 
 type P = {d: number};
 
@@ -364,7 +364,7 @@ const Cta: React.FC<P> = () => {
   );
 };
 
-const Outro: React.FC<P> = () => {
+export const Outro: React.FC<P> = () => {
   const p = usePop(6);
   const f = useCurrentFrame();
   const sub = usePop(14);
@@ -422,15 +422,3 @@ export const SCENES: Record<string, React.FC<P>> = {
   cta: Cta,
   outro: Outro,
 };
-
-/** Coupes franches comme dans la référence, avec un très léger zoom lent. */
-export const SceneWrap: React.FC<{d: number; children: React.ReactNode}> = ({d, children}) => {
-  const f = useCurrentFrame();
-  const zoom = interpolate(f, [0, d], [1, 1.025]);
-  return (
-    <AbsoluteFill style={{overflow: 'hidden'}}>
-      <AbsoluteFill style={{transform: `scale(${zoom})`, transformOrigin: '50% 50%'}}>{children}</AbsoluteFill>
-    </AbsoluteFill>
-  );
-};
-

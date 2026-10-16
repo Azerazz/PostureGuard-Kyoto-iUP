@@ -1,4 +1,6 @@
-"""Bande-son : musique de fond synthétisée + bruitages calés sur la timeline + voix.
+"""Bande-son : bruitages calés sur la timeline (+ musique synthétisée si "music": true dans l'épisode).
+
+Par défaut pas de musique : elle s'ajoute dans TikTok (~10 %).
 
 Usage : python3 scripts/audio.py episodes/ep01-cadeaux-interdits.json
 Sortie : build/<id>/music_sfx.wav (la voix est mixée ensuite par ffmpeg dans make_video.sh)
@@ -93,12 +95,12 @@ W_ = whoosh(); P_ = pop(); TH_ = thud(); D_ = ding()
 add(sfx, P_, 0.0, 0.5)
 add(sfx, TH_, blocks[0]['lines'][0]['e'] - 0.55 + 0.12, 0.9)          # tampon du hook
 for k, tk in enumerate(T):
-    add(sfx, W_, tk - 0.85, 0.55)                                        # transition / avion
+    add(sfx, W_, tk - 0.55, 0.55)                                        # transition / avion
     add(sfx, P_, tk + 0.35 + 0.42, 0.55)                                 # objet qui atterrit
     add(sfx, TH_, scenes[k]['lines'][0]['e'] - 0.25 + 0.12, 0.9)          # tampon INTERDIT
     if len(scenes[k]['lines']) > 1:
         add(sfx, D_, scenes[k]['lines'][1]['s'], 0.22)                    # étiquette rouge
-add(sfx, W_, TOUT - 0.85, 0.55)
+add(sfx, W_, TOUT - 0.55, 0.55)
 for j in range(len(T)):
     add(sfx, P_, TOUT + 0.1 + j * 0.09 + 0.4, 0.25)
 
@@ -110,8 +112,8 @@ venv = np.convolve(np.abs(v), np.ones(4410) / 4410, 'same')
 duck = 1 - 0.45 * np.clip(venv / 0.05, 0, 1)
 music *= duck / (np.abs(music).max() + 1e-9) * 0.16
 music *= np.clip((DUR - t_all) / 1.5, 0, 1)                              # fondu final
-sfx = sfx / (np.abs(sfx).max() + 1e-9) * 0.5
-mix = music + sfx
+sfx = sfx / (np.abs(sfx).max() + 1e-9) * 0.3  # bruitages discrets sous la voix
+mix = (music if ep.get('music') else 0) + sfx
 with wave.open(f'{out}/music_sfx.wav', 'wb') as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((np.clip(mix, -1, 1) * 32767).astype(np.int16).tobytes())

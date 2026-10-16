@@ -96,7 +96,15 @@ Légende : 🔥 très fort potentiel · ⚡ fort · 💡 pour varier.
 > 🏴 **Écosse** : la télévision (première démonstration par John Logie Baird, 1926).
 > Et ton pays, il a inventé quoi ? Le plus demandé passe dans la partie 2.
 
-## 4. Publier la vidéo 1
+## 4. La voix (identique à l'autre compte)
+
+- Moteur Microsoft Edge Neural TTS, voix `fr-FR-HenriNeural`, débit `+38%`, hauteur `+30Hz`, aucun effet audio.
+- Enchaînement serré : 0,08 s entre les phrases, 0,25 s au début. Cible : 4,3 à 4,8 mots/s, hauteur médiane ≈ 145 Hz.
+- Un script d'environ 280 mots donne une vidéo d'environ 62 s, au-dessus du minimum d'une minute.
+- **Écriture** : phrases courtes, tutoiement, le 1er mot est l'accroche. « ? » fait monter la voix, « … » crée un suspense, « : » annonce une révélation. Nombres en chiffres.
+- **Contrôle** : `python3 scripts/check_voice.py episodes/epXX.json` transcrit chaque phrase et signale les mots mal prononcés. On reformule (ex. « ta belle-mère » était compris « table mère », d'où « ta chérie »).
+
+## 5. Publier la vidéo 1
 
 **Fichier** : `livrables/atlas-interdit-ep01-cadeaux-interdits.mp4`
 
@@ -115,11 +123,11 @@ Quel pays pour la PARTIE 2 ? 👇 Les plus demandés passent dans la prochaine v
 
 **Réglages TikTok :**
 - La 1re image (« 8 CADEAUX INTERDITS ») sert de couverture : garde-la.
-- Ajoute un son tendance de l'onglet « Sons » à **3–5 % du volume**, ça aide la portée. La voix doit rester devant.
-- Les photos sont réelles (libres de droits), donc l'étiquette « contenu généré par IA » n'est pas nécessaire pour les images. Coche-la si tu remplaces la voix par une voix de synthèse réaliste et que tu as un doute.
+- La vidéo n'a **pas de musique** (seulement la voix et les bruitages) : ajoute un son tendance de l'onglet « Sons » à **environ 10 %** du volume, ça aide la portée. La voix doit rester devant.
+- Les photos sont réelles (libres de droits), donc l'étiquette « contenu généré par IA » n'est pas nécessaire pour les images. La voix est une synthèse vocale (Edge, `fr-FR-HenriNeural`) : coche l'étiquette si TikTok la demande ou en cas de doute.
 - **Crédits photos** (licence CC BY), à mettre en commentaire ou dans la légende : *Couteau : vgroiwwo96 (CC BY 2.0) · Chrysanthèmes : Deviations with Ray (CC BY 2.0)*. Les autres photos sont en CC0 (aucun crédit requis).
 
-## 5. Routine de publication (30 premiers jours)
+## 6. Routine de publication (30 premiers jours)
 
 - **1 vidéo par jour** entre **18 h et 21 h** (heure de Paris), à heure fixe.
 - **Dans la 1re heure** : réponds aux 20 premiers commentaires. Le meilleur « et mon pays ?? » devient une **réponse en vidéo** (fonction TikTok « répondre par une vidéo »).
@@ -130,7 +138,7 @@ Quel pays pour la PARTIE 2 ? 👇 Les plus demandés passent dans la prochaine v
 - Le sujet qui fait 2× la moyenne → on fait la **partie 2 dans les 48 h**.
 - **À éviter** : les duels entre pays rivaux (Maroc/Algérie, etc.), la politique et la religion présentée comme une moquerie. Ça amène des signalements et la chaîne est pénalisée.
 
-## 6. Monétisation (repères)
+## 7. Monétisation (repères)
 
 - **Creator Rewards** : 10 000 abonnés, 100 000 vues sur 30 jours, vidéos de plus d'1 minute. Toutes les vidéos de ce format font 60–70 s.
 - Ensuite : partenariats voyage (assurance, eSIM, langues), puis une série « partie 2 » sponsorisable.

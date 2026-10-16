@@ -90,7 +90,7 @@ const wide = (() => {
 // ---------- Timeline ----------
 const T = scenes.map((s) => s.block.lines[0].s);      // début de chaque scène (1re phrase)
 const TOUT = outroBlock.lines[0].s;
-const TR_PRE = 0.85, TR_POST = 0.6;                   // transition = [T - PRE, T + POST]
+const TR_PRE = 0.55, TR_POST = 0.65;                  // transition = [T - PRE, T + POST] (voix enchaînée : courte)
 const DUR = tl.duration;
 const trStart = (k) => (k < scenes.length ? T[k] : TOUT) - TR_PRE;
 const trEnd = (k) => (k < scenes.length ? T[k] : TOUT) + TR_POST;

@@ -1,8 +1,12 @@
 {
   "id": "ep01",
   "series": "CADEAUX INTERDITS",
-  "voice": "fr_FR-tom-medium",
-  "lengthScale": 0.95,
+  "voice": {
+    "engine": "edge",
+    "name": "fr-FR-HenriNeural",
+    "rate": "+38%",
+    "pitch": "+30Hz"
+  },
   "hook": {
     "title": [
       "8 CADEAUX",
@@ -16,7 +20,7 @@
         ]
       },
       {
-        "text": "Huit cadeaux interdits. Le dernier, presque personne ne le connaît.",
+        "text": "Voici 8 cadeaux interdits dans le monde, et reste jusqu'au bout : le dernier, presque personne ne le connaît.",
         "keys": [
           "interdits",
           "dernier"
@@ -46,10 +50,11 @@
           ]
         },
         {
-          "text": "Ça coupe l'amitié… sauf si on te rend une petite pièce.",
+          "text": "Il paraît qu'un couteau coupe l'amitié, alors celui qui le reçoit te donne une petite pièce, et ce n'est plus un cadeau : c'est un achat.",
           "keys": [
             "amitié",
-            "pièce"
+            "pièce",
+            "achat"
           ]
         }
       ],
@@ -74,9 +79,10 @@
           ]
         },
         {
-          "text": "C'est la fleur qu'on dépose au cimetière.",
+          "text": "Là-bas, c'est la fleur qu'on dépose au cimetière, alors si tu en offres à ta chérie… elle risque de mal le prendre.",
           "keys": [
-            "cimetière"
+            "cimetière",
+            "chérie"
           ]
         }
       ],
@@ -102,9 +108,10 @@
           ]
         },
         {
-          "text": "Un bouquet pair, c'est pour les enterrements.",
+          "text": "2, 4 ou 6 fleurs, c'est pour les enterrements, et pour un rendez-vous, on offre toujours un nombre impair.",
           "keys": [
-            "enterrements"
+            "enterrements",
+            "impair"
           ]
         }
       ],
@@ -122,16 +129,17 @@
       "tag": "VACHE SACRÉE",
       "lines": [
         {
-          "text": "En Inde, pas de cuir pour un ami hindou.",
+          "text": "En Inde, n'offre jamais de cuir.",
           "keys": [
             "Inde",
             "cuir"
           ]
         },
         {
-          "text": "La vache est sacrée pour les hindous.",
+          "text": "Et devine quoi : la vache est sacrée pour les hindous, donc un sac, une ceinture ou des chaussures en cuir, c'est une vraie offense.",
           "keys": [
-            "sacrée"
+            "sacrée",
+            "offense"
           ]
         }
       ],
@@ -156,7 +164,7 @@
           ]
         },
         {
-          "text": "En chinois, ça sonne comme : accompagner quelqu'un vers la mort.",
+          "text": "En chinois, offrir une horloge se dit presque comme : accompagner quelqu'un vers la mort, rien que ça.",
           "keys": [
             "mort"
           ]
@@ -183,11 +191,11 @@
           ]
         },
         {
-          "text": "La légende dit qu'il partira avec.",
+          "text": "La légende dit qu'il va les enfiler… et partir avec, pour toujours.",
           "keys": [
-            "partira"
-          ],
-          "say": "La légende dit, qu'il partira avec."
+            "partir",
+            "toujours"
+          ]
         }
       ],
       "image": "shoes"
@@ -205,19 +213,20 @@
       "tag": "四 (SHI) = 死 (MORT)",
       "lines": [
         {
-          "text": "Au Japon, jamais rien par quatre.",
+          "text": "Au Japon, jamais rien par 4.",
           "keys": [
             "Japon",
-            "quatre"
+            "4"
           ]
         },
         {
-          "text": "Quatre se dit « shi »… comme le mot mort.",
+          "text": "En japonais, 4 se dit « shi »… exactement comme le mot mort, et même dans certains hôpitaux, on évite la chambre numéro 4.",
           "keys": [
             "shi",
-            "mort"
+            "mort",
+            "hôpitaux"
           ],
-          "say": "Quatre se dit « chi »… comme le mot mort."
+          "say": "En japonais, 4 se dit « chi »… exactement comme le mot mort, et même dans certains hôpitaux, on évite la chambre numéro 4."
         }
       ],
       "image": "gift"
@@ -232,7 +241,7 @@
       ],
       "extra": "emoji:1F494",
       "object": "UN PARAPLUIE",
-      "tag": "= RUPTURE",
+      "tag": "伞 SǍN ≈ 散 SÀN = RUPTURE",
       "lines": [
         {
           "text": "Et à Taïwan, n'offre jamais un parapluie à ton amour.",
@@ -242,11 +251,12 @@
           ]
         },
         {
-          "text": "Parapluie sonne comme « séparation ». C'est la rupture.",
+          "text": "Parapluie se dit « san »… comme le mot séparation. Tu lui offres un parapluie ? Tu viens de rompre.",
           "keys": [
             "séparation",
-            "rupture"
-          ]
+            "rompre"
+          ],
+          "say": "Parapluie se dit « sanne »… comme le mot séparation. Tu lui offres un parapluie ? Tu viens de rompre."
         }
       ],
       "image": "umbrella",
@@ -259,14 +269,14 @@
   "outro": {
     "lines": [
       {
-        "text": "Et chez toi, c'est quoi le cadeau interdit ?",
+        "text": "Et toi, dans ton pays, c'est quoi le cadeau interdit ?",
         "keys": [
           "toi",
           "interdit"
         ]
       },
       {
-        "text": "Dis-le en commentaire, et abonne-toi pour la partie deux.",
+        "text": "Dis-le en commentaire, les plus demandés passent dans la partie 2, alors abonne-toi pour ne pas la rater.",
         "keys": [
           "commentaire",
           "abonne-toi"

@@ -13,7 +13,7 @@ export const useFonts = () => {
   }, [handle]);
 };
 
-export const Video: React.FC = () => {
+export const Video: React.FC<{music?: boolean}> = ({music = true}) => {
   useFonts();
   const {fps, scenes, durationInFrames} = timeline;
   const starts = scenes.map((s, i) => (i === 0 ? 0 : Math.round(s.start * fps)));
@@ -33,7 +33,7 @@ export const Video: React.FC = () => {
         );
       })}
       <Subtitles scenes={scenes} />
-      <Audio src={staticFile('music.wav')} volume={0.09} />
+      {music && <Audio src={staticFile('music.wav')} volume={0.09} />}
       <Audio src={staticFile('voice.wav')} volume={1} />
     </AbsoluteFill>
   );

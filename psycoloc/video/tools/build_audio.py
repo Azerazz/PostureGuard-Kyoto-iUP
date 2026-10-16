@@ -4,6 +4,7 @@ Usage : python3 -I tools/build_audio.py <dossier_projet> [modele_piper.onnx]
 
 Moteurs (script.json > tts.engine) :
   - "edge"  : voix neuronales Microsoft (fr-FR-HenriNeural…), horodatage des mots fourni par le service
+  - "elevenlabs" : voix ElevenLabs (variable d'env. ELEVENLABS_API_KEY, tts.voice = voice_id), horodatage par caractère
   - "piper" : voix locale hors-ligne (passer le chemin du modèle .onnx), alignement par faster-whisper
 Dans le texte, *mot* = mot-clé affiché en jaune.
 Sorties : public/voice.wav, src/timeline.json
@@ -96,6 +97,39 @@ async def edge_tts_scene(text, cfg, out):
     return bounds
 
 
+def elevenlabs_scene(text, cfg, out):
+    import base64
+    import os
+    import urllib.request
+
+    req = urllib.request.Request(
+        f"https://api.elevenlabs.io/v1/text-to-speech/{cfg['voice']}/with-timestamps",
+        data=json.dumps({
+            "text": text,
+            "model_id": cfg.get("model", "eleven_multilingual_v2"),
+            "voice_settings": cfg.get("settings", {"stability": 0.4, "similarity_boost": 0.8, "style": 0.3, "speed": 1.1}),
+        }).encode(),
+        headers={"xi-api-key": os.environ["ELEVENLABS_API_KEY"], "Content-Type": "application/json"},
+    )
+    res = json.loads(urllib.request.urlopen(req).read())
+    Path(out).write_bytes(base64.b64decode(res["audio_base64"]))
+    al = res["alignment"]
+    bounds, cur, t0 = [], "", None
+    for ch, s, e in zip(al["characters"], al["character_start_times_seconds"], al["character_end_times_seconds"]):
+        if ch.isspace():
+            if cur:
+                bounds.append((t0, last, cur))
+            cur, t0 = "", None
+            continue
+        if t0 is None:
+            t0 = s
+        cur += ch
+        last = e
+    if cur:
+        bounds.append((t0, last, cur))
+    return bounds
+
+
 def piper_scene(text, model, out):
     from faster_whisper import WhisperModel
 
@@ -116,6 +150,8 @@ for sc in script["scenes"]:
     out = tmp / f"{sc['id']}.mp3"
     if cfg["engine"] == "edge":
         bounds = asyncio.run(edge_tts_scene(spoken, cfg, out))
+    elif cfg["engine"] == "elevenlabs":
+        bounds = elevenlabs_scene(spoken, cfg, out)
     else:
         bounds = piper_scene(spoken, sys.argv[2], out)
     a = decode(out)

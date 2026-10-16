@@ -9,6 +9,8 @@ Chaîne TikTok (+ Reels + Shorts) de vulgarisation psychologique : chaque vidéo
 | Fichier | Usage |
 |---|---|
 | `video1_36-questions.mp4` | Vidéo 1, prête à publier (1080×1920, 68 s, son normalisé −14 LUFS) |
+| `video1_SANS-musique.mp4` | Même vidéo sans musique, pour ajouter un son TikTok dans l'app |
+| `echantillons_voix/` | 3 voix alternatives à écouter |
 | `Cover.png` | Couverture à choisir dans TikTok pour la vidéo 1 |
 | `ProfilePicture.png` | Photo de profil (affichée en rond) |
 | `LogoFull.png` | Logo complet (bannière, Instagram, YouTube) |
@@ -157,4 +159,6 @@ ffmpeg -i out.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5 -c:a aac final.mp4
 
 **Voix** : `fr-FR-HenriNeural` accélérée (+38 %) et légèrement plus aiguë (+30 Hz), réglée pour coller au ton des vidéos de référence (≈ 145 Hz, ≈ 4,6 mots/s). `edge-tts` passe par le service de lecture d'Edge (non officiel) : pour un usage commercial durable, prendre la même voix via l'API officielle **Azure Speech** (palier gratuit généreux) ou une voix **ElevenLabs**. Pas de clonage de la voix d'un autre créateur.
 
-**Musique** : tu peux aussi ajouter un son tendance directement dans TikTok (volume ~10 %), ça aide la distribution.
+**Passer à ElevenLabs** : dans `script.json`, mettre `"tts": {"engine": "elevenlabs", "voice": "<voice_id>"}`, puis `ELEVENLABS_API_KEY=... python3 tools/build_audio.py .` (les sous-titres se recalent tout seuls).
+
+**Musique** : utiliser `video1_SANS-musique.mp4` et ajouter le son directement dans TikTok (sur la vidéo qui t'inspire : disque en bas à droite → « Utiliser ce son » / favoris ; à la publication : « Ajouter un son », volume musique ~10-15 %). C'est la voie légale pour réutiliser la même musique, et les sons de la bibliothèque TikTok aident la distribution.

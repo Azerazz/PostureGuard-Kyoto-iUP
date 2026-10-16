@@ -1,0 +1,5 @@
+node_modules/
+build/
+assets/map/
+assets/voices/
+__pycache__/

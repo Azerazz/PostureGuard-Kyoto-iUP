@@ -1,0 +1,283 @@
+{
+  "id": "ep01",
+  "series": "CADEAUX INTERDITS",
+  "voice": "fr_FR-tom-medium",
+  "lengthScale": 0.95,
+  "hook": {
+    "title": [
+      "8 CADEAUX",
+      "INTERDITS"
+    ],
+    "lines": [
+      {
+        "text": "Offre ça à la mauvaise personne… et c'est fini entre vous.",
+        "keys": [
+          "fini"
+        ]
+      },
+      {
+        "text": "Huit cadeaux interdits. Le dernier, presque personne ne le connaît.",
+        "keys": [
+          "interdits",
+          "dernier"
+        ]
+      }
+    ],
+    "image": "gift_hook"
+  },
+  "scenes": [
+    {
+      "country": "FRANCE",
+      "iso": 250,
+      "flag": "fr",
+      "center": [
+        2.5,
+        46.6
+      ],
+      "extra": "coin",
+      "object": "UN COUTEAU",
+      "tag": "COUPE L'AMITIÉ",
+      "lines": [
+        {
+          "text": "En France, n'offre jamais un couteau.",
+          "keys": [
+            "France",
+            "couteau"
+          ]
+        },
+        {
+          "text": "Ça coupe l'amitié… sauf si on te rend une petite pièce.",
+          "keys": [
+            "amitié",
+            "pièce"
+          ]
+        }
+      ],
+      "image": "knife"
+    },
+    {
+      "country": "ITALIE",
+      "iso": 380,
+      "flag": "it",
+      "center": [
+        12.5,
+        42.5
+      ],
+      "object": "CHRYSANTHÈMES",
+      "tag": "LA FLEUR DES MORTS",
+      "lines": [
+        {
+          "text": "En Italie, oublie les chrysanthèmes.",
+          "keys": [
+            "Italie",
+            "chrysanthèmes"
+          ]
+        },
+        {
+          "text": "C'est la fleur qu'on dépose au cimetière.",
+          "keys": [
+            "cimetière"
+          ]
+        }
+      ],
+      "image": "chrys"
+    },
+    {
+      "country": "RUSSIE",
+      "iso": 643,
+      "flag": "ru",
+      "center": [
+        50,
+        58
+      ],
+      "zoom": 2.0,
+      "object": "BOUQUET PAIR",
+      "tag": "2 · 4 · 6 = ENTERREMENT",
+      "lines": [
+        {
+          "text": "En Russie, jamais un nombre pair de fleurs.",
+          "keys": [
+            "Russie",
+            "pair"
+          ]
+        },
+        {
+          "text": "Un bouquet pair, c'est pour les enterrements.",
+          "keys": [
+            "enterrements"
+          ]
+        }
+      ],
+      "image": "bouquet"
+    },
+    {
+      "country": "INDE",
+      "iso": 356,
+      "flag": "in",
+      "center": [
+        79,
+        22
+      ],
+      "object": "DU CUIR",
+      "tag": "VACHE SACRÉE",
+      "lines": [
+        {
+          "text": "En Inde, pas de cuir pour un ami hindou.",
+          "keys": [
+            "Inde",
+            "cuir"
+          ]
+        },
+        {
+          "text": "La vache est sacrée pour les hindous.",
+          "keys": [
+            "sacrée"
+          ]
+        }
+      ],
+      "image": "bag"
+    },
+    {
+      "country": "CHINE",
+      "iso": 156,
+      "flag": "cn",
+      "center": [
+        104,
+        35
+      ],
+      "object": "UNE HORLOGE",
+      "tag": "送钟 ≈ 送终 (LA MORT)",
+      "lines": [
+        {
+          "text": "En Chine, n'offre jamais une horloge.",
+          "keys": [
+            "Chine",
+            "horloge"
+          ]
+        },
+        {
+          "text": "En chinois, ça sonne comme : accompagner quelqu'un vers la mort.",
+          "keys": [
+            "mort"
+          ]
+        }
+      ],
+      "image": "clock"
+    },
+    {
+      "country": "CORÉE DU SUD",
+      "iso": 410,
+      "flag": "kr",
+      "center": [
+        127.8,
+        36.2
+      ],
+      "object": "DES CHAUSSURES",
+      "tag": "IL VA PARTIR AVEC",
+      "lines": [
+        {
+          "text": "En Corée du Sud, pas de chaussures pour ton amoureux.",
+          "keys": [
+            "Corée",
+            "chaussures"
+          ]
+        },
+        {
+          "text": "La légende dit qu'il partira avec.",
+          "keys": [
+            "partira"
+          ],
+          "say": "La légende dit, qu'il partira avec."
+        }
+      ],
+      "image": "shoes"
+    },
+    {
+      "country": "JAPON",
+      "iso": 392,
+      "flag": "jp",
+      "center": [
+        137.5,
+        37.5
+      ],
+      "multiply": 4,
+      "object": "PAR 4",
+      "tag": "四 (SHI) = 死 (MORT)",
+      "lines": [
+        {
+          "text": "Au Japon, jamais rien par quatre.",
+          "keys": [
+            "Japon",
+            "quatre"
+          ]
+        },
+        {
+          "text": "Quatre se dit « shi »… comme le mot mort.",
+          "keys": [
+            "shi",
+            "mort"
+          ],
+          "say": "Quatre se dit « chi »… comme le mot mort."
+        }
+      ],
+      "image": "gift"
+    },
+    {
+      "country": "TAÏWAN",
+      "iso": 158,
+      "flag": "tw",
+      "center": [
+        121,
+        23.7
+      ],
+      "extra": "emoji:1F494",
+      "object": "UN PARAPLUIE",
+      "tag": "= RUPTURE",
+      "lines": [
+        {
+          "text": "Et à Taïwan, n'offre jamais un parapluie à ton amour.",
+          "keys": [
+            "Taïwan",
+            "parapluie"
+          ]
+        },
+        {
+          "text": "Parapluie sonne comme « séparation ». C'est la rupture.",
+          "keys": [
+            "séparation",
+            "rupture"
+          ]
+        }
+      ],
+      "image": "umbrella",
+      "flagFit": {
+        "bg": "#FE0000",
+        "width": 1.3
+      }
+    }
+  ],
+  "outro": {
+    "lines": [
+      {
+        "text": "Et chez toi, c'est quoi le cadeau interdit ?",
+        "keys": [
+          "toi",
+          "interdit"
+        ]
+      },
+      {
+        "text": "Dis-le en commentaire, et abonne-toi pour la partie deux.",
+        "keys": [
+          "commentaire",
+          "abonne-toi"
+        ]
+      }
+    ],
+    "title": "ET TON PAYS ?",
+    "subtitle": "il a quel cadeau interdit ?"
+  },
+  "header": [
+    "LES CADEAUX ",
+    "INTERDITS"
+  ]
+}

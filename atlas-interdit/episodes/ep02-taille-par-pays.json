@@ -1,0 +1,304 @@
+{
+  "id": "ep02",
+  "series": "TAILLE MOYENNE",
+  "voice": {
+    "engine": "edge",
+    "name": "fr-FR-HenriNeural",
+    "rate": "+38%",
+    "pitch": "+30Hz"
+  },
+  "stamp": null,
+  "header": [
+    "TAILLE MOYENNE ",
+    "PAR PAYS"
+  ],
+  "source": "Source : NCD-RisC / The Lancet — adultes nés en 1996",
+  "hook": {
+    "title": [
+      "TA TAILLE",
+      "VS TON PAYS"
+    ],
+    "lines": [
+      {
+        "text": "Tu fais plus ou moins que la moyenne de ton pays ?",
+        "keys": [
+          "moyenne"
+        ]
+      },
+      {
+        "text": "Voici la vraie taille des hommes et des femmes dans 8 pays, et le dernier… personne ne s'y attend.",
+        "keys": [
+          "vraie",
+          "dernier"
+        ]
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "country": "FRANCE",
+      "iso": 250,
+      "flag": "fr",
+      "center": [
+        2.5,
+        46.6
+      ],
+      "height": [
+        179.74,
+        164.88
+      ],
+      "tag": "1M75 = SOUS LA MOYENNE",
+      "lines": [
+        {
+          "text": "En France, les hommes font en moyenne 1m80.",
+          "keys": [
+            "France",
+            "1m80."
+          ]
+        },
+        {
+          "text": "Et les femmes, 1m65. Donc si tu fais 1m75, désolé frérot : t'es sous la moyenne.",
+          "keys": [
+            "1m65.",
+            "moyenne."
+          ]
+        }
+      ]
+    },
+    {
+      "country": "MAROC",
+      "iso": 504,
+      "flag": "ma",
+      "center": [
+        -6.5,
+        31.8
+      ],
+      "height": [
+        170.4,
+        157.82
+      ],
+      "tag": "-9 CM VS LA FRANCE",
+      "lines": [
+        {
+          "text": "Au Maroc, les hommes font 1m70, presque 10 centimètres de moins que les Français.",
+          "keys": [
+            "Maroc",
+            "1m70,"
+          ]
+        },
+        {
+          "text": "Et les Marocaines, 1m58.",
+          "keys": [
+            "1m58."
+          ]
+        }
+      ]
+    },
+    {
+      "country": "ALGÉRIE",
+      "iso": 12,
+      "flag": "dz",
+      "center": [
+        2.6,
+        28.0
+      ],
+      "height": [
+        170.07,
+        159.09
+      ],
+      "tag": "ALGÉRIENNES > MAROCAINES",
+      "lines": [
+        {
+          "text": "En Algérie, les hommes font aussi 1m70.",
+          "keys": [
+            "Algérie",
+            "1m70."
+          ]
+        },
+        {
+          "text": "Mais les Algériennes battent les Marocaines : 1m59 de moyenne.",
+          "keys": [
+            "Algériennes",
+            "1m59"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "TUNISIE",
+      "iso": 788,
+      "flag": "tn",
+      "center": [
+        9.5,
+        34.0
+      ],
+      "height": [
+        173.95,
+        160.35
+      ],
+      "tag": "N°1 DU MAGHREB",
+      "lines": [
+        {
+          "text": "Et devine quoi : en Tunisie, les hommes montent à 1m74, les plus grands du Maghreb.",
+          "keys": [
+            "Tunisie",
+            "1m74,",
+            "Maghreb."
+          ]
+        },
+        {
+          "text": "Et les Tunisiennes, 1m60.",
+          "keys": [
+            "1m60."
+          ]
+        }
+      ]
+    },
+    {
+      "country": "SÉNÉGAL",
+      "iso": 686,
+      "flag": "sn",
+      "center": [
+        -14.5,
+        14.5
+      ],
+      "height": [
+        173.14,
+        162.52
+      ],
+      "tag": "N°1 AFRIQUE DE L'OUEST",
+      "lines": [
+        {
+          "text": "Au Sénégal, les hommes font 1m73, plus grands que les Marocains et les Algériens.",
+          "keys": [
+            "Sénégal",
+            "1m73,"
+          ]
+        },
+        {
+          "text": "Et les Sénégalaises, 1m63 : les plus grandes de toute l'Afrique de l'Ouest.",
+          "keys": [
+            "1m63",
+            "grandes"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "BELGIQUE",
+      "iso": 56,
+      "flag": "be",
+      "center": [
+        4.5,
+        50.6
+      ],
+      "height": [
+        181.7,
+        165.49
+      ],
+      "tag": "2E SUR 200 PAYS",
+      "lines": [
+        {
+          "text": "En Belgique, les hommes font 1m82 : c'est le 2e pays le plus grand du monde.",
+          "keys": [
+            "Belgique",
+            "1m82",
+            "monde."
+          ],
+          "say": "En Belgique, les hommes font 1m82 : c'est le deuxième pays le plus grand du monde."
+        },
+        {
+          "text": "Et les femmes belges, 1m65.",
+          "keys": [
+            "1m65."
+          ]
+        }
+      ],
+      "stamp": "N°2 MONDIAL"
+    },
+    {
+      "country": "PAYS-BAS",
+      "iso": 528,
+      "flag": "nl",
+      "center": [
+        5.3,
+        52.2
+      ],
+      "height": [
+        182.54,
+        168.72
+      ],
+      "tag": "1M69 = NORMAL ICI",
+      "lines": [
+        {
+          "text": "Et le numéro 1 mondial, c'est les Pays-Bas : 1m83 pour les hommes.",
+          "keys": [
+            "1",
+            "Pays-Bas",
+            "1m83"
+          ]
+        },
+        {
+          "text": "Et 1m69 pour les femmes. Là-bas, une fille de 1m69… c'est juste normal.",
+          "keys": [
+            "1m69",
+            "normal."
+          ]
+        }
+      ],
+      "stamp": "N°1 MONDIAL"
+    },
+    {
+      "country": "TIMOR ORIENTAL",
+      "iso": 626,
+      "flag": "tl",
+      "center": [
+        125.8,
+        -8.8
+      ],
+      "height": [
+        159.79,
+        151.15
+      ],
+      "tag": "-23 CM VS PAYS-BAS",
+      "lines": [
+        {
+          "text": "Et maintenant, l'autre bout du classement : le Timor oriental, où les hommes font 1m60, les plus petits du monde.",
+          "keys": [
+            "Timor",
+            "1m60,",
+            "petits"
+          ]
+        },
+        {
+          "text": "Et les femmes, 1m51. Un homme du Timor fait 23 centimètres de moins qu'un homme des Pays-Bas.",
+          "keys": [
+            "1m51.",
+            "23"
+          ]
+        }
+      ],
+      "stamp": "DERNIER DU MONDE"
+    }
+  ],
+  "outro": {
+    "title": "ET TOI ?",
+    "subtitle": "tu fais plus ou moins que ton pays ?",
+    "lines": [
+      {
+        "text": "Et toi, tu fais combien ? Plus ou moins que la moyenne de ton pays ?",
+        "keys": [
+          "toi",
+          "moyenne"
+        ]
+      },
+      {
+        "text": "Dis-le en commentaire, les pays les plus demandés passent dans la partie 2, alors abonne-toi.",
+        "keys": [
+          "commentaire",
+          "abonne-toi."
+        ]
+      }
+    ]
+  }
+}

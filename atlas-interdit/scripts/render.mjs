@@ -71,12 +71,14 @@ for (const [i, s] of ep.scenes.entries()) {
   const [cx, cy] = proj(s.center);
   scenes.push({
     ...s, i, path, bbox: [x0, y0, x1, y1], cam: { x: s.zoom ? cx : (x0 + x1) / 2, y: s.zoom ? cy : (y0 + y1) / 2, z: fit },
-    centerPx: [(x0 + x1) / 2, (y0 + y1) / 2], flagImg: await loadFlag(s.flag), obj: await loadObj(s.image),
+    centerPx: [(x0 + x1) / 2, (y0 + y1) / 2], flagImg: await loadFlag(s.flag), obj: s.image ? await loadObj(s.image) : null,
     extraImg: s.extra ? await loadObj(s.extra) : null, block: tl.blocks[i + 1],
   });
 }
 const hookBlock = tl.blocks[0], outroBlock = tl.blocks[tl.blocks.length - 1];
-const hookImg = await loadObj(ep.hook.image);
+const hookImg = ep.hook.image ? await loadObj(ep.hook.image) : null;
+// texte du tampon : par scène > par épisode > « INTERDIT » (null = pas de tampon)
+const stampText = (o) => (o && o.stamp !== undefined ? o.stamp : ep.stamp === undefined ? 'INTERDIT' : ep.stamp);
 const smallFlags = Object.fromEntries(await Promise.all(scenes.map(async (s) => [s.flag, s.flagImg])));
 
 // Vue large englobant tous les pays
@@ -245,12 +247,72 @@ function stamp(ctx, text, cx, cy, p, size = 64) {
   ctx.restore();
 }
 
+// ---------- Silhouettes (épisodes « taille ») ----------
+const MALE = [[0.024,0.118],[0.03,0.148],[0.115,0.172],[0.14,0.205],[0.145,0.33],[0.138,0.45],[0.128,0.53],[0.132,0.56],[0.112,0.575],[0.1,0.545],[0.108,0.45],[0.104,0.32],[0.097,0.28],[0.094,0.42],[0.092,0.51],[0.094,0.545],[0.088,0.72],[0.078,0.9],[0.074,0.965],[0.092,0.985],[0.09,1],[0.022,1],[0.02,0.9],[0.017,0.72],[0.008,0.56],[0,0.548]];
+const FEMALE = [[0.022,0.118],[0.026,0.15],[0.1,0.17],[0.122,0.2],[0.128,0.32],[0.122,0.44],[0.114,0.52],[0.118,0.55],[0.1,0.565],[0.09,0.535],[0.096,0.44],[0.092,0.32],[0.086,0.27],[0.076,0.38],[0.074,0.42],[0.098,0.53],[0.096,0.58],[0.082,0.75],[0.07,0.92],[0.066,0.965],[0.082,0.985],[0.08,1],[0.02,1],[0.018,0.92],[0.016,0.75],[0.008,0.58],[0,0.565]];
+const PX_CM = 3.3;
+const fmtH = (cm) => { const r = Math.round(cm); return `${Math.floor(r / 100)}M${String(r % 100).padStart(2, '0')}`; };
+function personPath(ctx, x, footY, h, female) {
+  const half = female ? FEMALE : MALE;
+  const pts = [...half.map(([u, v]) => [u, v]), ...half.slice().reverse().map(([u, v]) => [-u, v])];
+  const P = ([u, v]) => [x + u * h, footY - h + v * h];
+  ctx.beginPath();
+  const f = P(pts[0]); ctx.moveTo(f[0], f[1]);
+  for (let i = 1; i < pts.length; i++) {
+    const a = P(pts[i]), b = P(pts[(i + 1) % pts.length]);
+    ctx.quadraticCurveTo(a[0], a[1], (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+  }
+  ctx.closePath();
+  ctx.moveTo(x + 0.046 * h, footY - h + 0.062 * h);
+  ctx.ellipse(x, footY - h + 0.062 * h, 0.046 * h, 0.058 * h, 0, 0, Math.PI * 2);
+  if (female) { // cheveux longs
+    ctx.moveTo(x - 0.058 * h, footY - h + 0.07 * h);
+    ctx.ellipse(x, footY - h + 0.07 * h, 0.058 * h, 0.07 * h, 0, Math.PI, 0);
+    ctx.lineTo(x + 0.062 * h, footY - h + 0.19 * h); ctx.quadraticCurveTo(x, footY - h + 0.21 * h, x - 0.062 * h, footY - h + 0.19 * h); ctx.closePath();
+  }
+}
+function drawPerson(ctx, x, footY, cm, female, p, label, color) {
+  if (p <= 0) return;
+  const h = cm * PX_CM * backOut(clamp(p));
+  ctx.save();
+  ctx.shadowColor = 'rgba(255,255,255,0.9)'; ctx.shadowBlur = 16;
+  personPath(ctx, x, footY, h, female); ctx.fillStyle = color; ctx.fill('nonzero');
+  ctx.shadowColor = 'transparent'; ctx.lineWidth = 4; ctx.strokeStyle = '#fff'; ctx.stroke();
+  ctx.restore();
+  // ombre au sol
+  ctx.save(); ctx.globalAlpha = 0.35 * clamp(p * 2); ctx.fillStyle = '#000';
+  ctx.beginPath(); ctx.ellipse(x, footY + 4, 0.16 * cm * PX_CM, 12, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  // repère de hauteur + étiquette (compteur)
+  const headY = footY - h;
+  ctx.save(); ctx.globalAlpha = clamp(p * 2); ctx.setLineDash([10, 8]); ctx.lineWidth = 3; ctx.strokeStyle = color;
+  ctx.beginPath(); ctx.moveTo(x < W / 2 ? 120 : x - 90, headY); ctx.lineTo(x < W / 2 ? x + 90 : W - 120, headY); ctx.stroke(); ctx.restore();
+  const shown = label ?? fmtH(lerp(140, cm, easeOut(clamp(p * 1.25))));
+  const lp = backOut(clamp(p * 1.6));
+  ctx.save(); ctx.translate(x, headY - 52); ctx.scale(lp, lp); pill(ctx, shown, 0, 0, { size: 52, bg: color, radius: 14 }); ctx.restore();
+}
+function drawRuler(ctx, footY, alpha) {
+  if (alpha <= 0) return;
+  ctx.save(); ctx.globalAlpha = alpha * 0.85;
+  for (let cm = 150; cm <= 190; cm += 10) {
+    const y = footY - cm * PX_CM;
+    ctx.setLineDash([4, 10]); ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(255,255,255,0.75)';
+    ctx.beginPath(); ctx.moveTo(110, y); ctx.lineTo(W - 110, y); ctx.stroke();
+    if (cm % 20 === 10) { ctx.setLineDash([]); strokeText(ctx, fmtH(cm), 62, y, 26, { lw: 6, blur: 4, dy: 2 }); }
+  }
+  ctx.restore();
+}
+
 // ---------- Sous-titres : découpage en groupes de 2-3 mots ----------
 const chunks = [];
 for (const b of tl.blocks) for (const line of b.lines) {
   let cur = [];
   const flush = () => { if (cur.length) chunks.push({ words: cur, s: cur[0].s, e: cur[cur.length - 1].e, lineEnd: line.e }); cur = []; };
   for (const w of line.words) {
+    // ponctuation isolée (« : », « ? » en typographie française) : rattachée au mot précédent
+    if (/^[:;?!…»«]+$/.test(w.w)) {
+      const prev = cur.length ? cur[cur.length - 1] : chunks.length ? chunks[chunks.length - 1].words.slice(-1)[0] : null;
+      if (prev) { prev.w += ' ' + w.w; prev.e = w.e; continue; }
+    }
     cur.push(w);
     const len = cur.map((x) => x.w).join(' ').length;
     if (/[…,.:?!»]$/.test(w.w) || len >= 15 || cur.length >= 3) flush();
@@ -370,8 +432,16 @@ function renderFrame(t) {
   if (t < trStart(0) + 0.5) {
     const out = prog(t, trStart(0) - 0.1, 0.45);
     const dropT = prog(t, -0.9, 0.9); // déjà posé à la 1re image (miniature)
-    drawObject(ctx, hookImg, W / 2, BASE + 20, 640, 560, { drop: Math.max(dropT, 0.0001), alpha: 1 - out, scale: 1 - out * 0.3 });
-    stamp(ctx, 'INTERDIT', W / 2, BASE - 290, prog(t, hookBlock.lines[0].e - 0.55, 0.35) * (1 - out), 92);
+    if (hookImg) drawObject(ctx, hookImg, W / 2, BASE + 20, 640, 560, { drop: Math.max(dropT, 0.0001), alpha: 1 - out, scale: 1 - out * 0.3 });
+    else { // silhouettes mystère
+      ctx.save(); ctx.globalAlpha = 1 - out;
+      drawRuler(ctx, BASE + 40, 1);
+      drawPerson(ctx, W / 2 - 150, BASE + 40, 178, false, 1, '?', '#2D7FF9');
+      drawPerson(ctx, W / 2 + 150, BASE + 40, 164, true, 1, '?', '#E6197C');
+      ctx.restore();
+    }
+    const hs = stampText(ep.hook);
+    if (hs) stamp(ctx, hs, W / 2, BASE - 290, prog(t, hookBlock.lines[0].e - 0.55, 0.35) * (1 - out), 92);
     // grand titre (présent dès la 1re image pour la miniature)
     const [l1, l2] = ep.hook.title;
     const ty = lerp(330, 120, easeInOut(out)), ts = lerp(1, 0.45, easeInOut(out));
@@ -393,6 +463,8 @@ function renderFrame(t) {
     ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
     ctx.fillStyle = '#fff'; ctx.fillText(h1, W / 2 - pw / 2 + 28, 91);
     ctx.fillStyle = '#FFD43B'; ctx.fillText(h2, W / 2 - pw / 2 + 28 + w1, 91);
+    if (ep.source) { ctx.font = font(22, 'MXBold'); ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 6; ctx.fillText(ep.source, W / 2, 138); }
     ctx.restore();
     // titre du pays : drapeau + nom
     const s = scenes[active];
@@ -413,7 +485,13 @@ function renderFrame(t) {
     const alpha = 1 - out, drop = prog(t, dropStart, 0.75);
     if (drop > 0) {
       let info;
-      if (s.multiply) {
+      if (s.height) {
+        drawRuler(ctx, BASE + 40, alpha * clamp(drop * 2));
+        ctx.save(); ctx.globalAlpha = alpha;
+        drawPerson(ctx, W / 2 - 150, BASE + 40, s.height[0], false, prog(t, dropStart, 0.7), null, '#2D7FF9');
+        drawPerson(ctx, W / 2 + 150, BASE + 40, s.height[1], true, prog(t, tagT, 0.7), null, '#E6197C');
+        ctx.restore();
+      } else if (s.multiply) {
         const pos = [[-150, -10], [150, -10], [-150, -270], [150, -270]];
         pos.forEach(([dx, dy], j) => {
           const d = prog(t, dropStart + j * 0.12, 0.7);
@@ -423,7 +501,7 @@ function renderFrame(t) {
       } else info = drawObject(ctx, s.obj, W / 2, BASE, 660, 580, { drop, alpha, scale: 1 - out * 0.3 });
       // étiquette noire : nom de l'objet
       const lp = backOut(prog(t, dropStart + 0.35, 0.3));
-      if (lp > 0) {
+      if (lp > 0 && s.object) {
         ctx.save(); ctx.globalAlpha = alpha; ctx.translate(W / 2, BASE + 62); ctx.scale(lp, lp);
         pill(ctx, s.object, 0, 0, { size: 44 }); ctx.restore();
       }
@@ -439,9 +517,10 @@ function renderFrame(t) {
         }
       }
       // tampon INTERDIT
-      ctx.save(); ctx.globalAlpha = alpha; stamp(ctx, 'INTERDIT', W / 2, BASE - 260, prog(t, stampT, 0.35), 84); ctx.restore();
+      const st = stampText(s);
+      if (st) { ctx.save(); ctx.globalAlpha = alpha; stamp(ctx, st, W / 2, s.height ? BASE - 330 : BASE - 260, prog(t, s.stampAt === 'B' ? tagT + 0.9 : stampT, 0.35), 84); ctx.restore(); }
       // étiquette rouge : le fait
-      const tp = backOut(prog(t, tagT, 0.3));
+      const tp = backOut(prog(t, s.height ? tagT + 0.8 : tagT, 0.3));
       if (tp > 0) {
         ctx.save(); ctx.globalAlpha = alpha; ctx.translate(W / 2, 395); ctx.scale(tp, tp);
         const sz = fitSize(ctx, s.tag, 44, 820);
@@ -466,6 +545,18 @@ function renderFrame(t) {
       const cx = 165 + col * 250, by = 690 + row * 290;
       const d = prog(t, TOUT + 0.1 + j * 0.09, 0.6);
       if (d <= 0) return;
+      if (s.height) { // drapeau + tailles
+        const k = backOut(d);
+        ctx.save(); ctx.translate(cx, by - 120); ctx.scale(k, k);
+        ctx.shadowColor = 'rgba(0,0,0,0.4)'; ctx.shadowBlur = 8; drawFlagRect(ctx, s.flagImg, -60, -45, 120, 90); ctx.restore();
+        if (d > 0.5) {
+          ctx.save(); ctx.globalAlpha = clamp((d - 0.5) * 2);
+          strokeText(ctx, fmtH(s.height[0]), cx, by - 30, 44, { lw: 9, color: '#7FB2FF' });
+          strokeText(ctx, fmtH(s.height[1]), cx, by + 20, 44, { lw: 9, color: '#FF7FBF' });
+          ctx.restore();
+        }
+        return;
+      }
       const img = s.obj;
       drawObject(ctx, img, cx, by, 210, 190, { drop: d });
       const fl = backOut(prog(t, TOUT + 0.4 + j * 0.09, 0.3));

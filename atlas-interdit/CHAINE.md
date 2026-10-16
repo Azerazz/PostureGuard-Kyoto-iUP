@@ -142,3 +142,27 @@ Quel pays pour la PARTIE 2 ? 👇 Les plus demandés passent dans la prochaine v
 
 - **Creator Rewards** : 10 000 abonnés, 100 000 vues sur 30 jours, vidéos de plus d'1 minute. Toutes les vidéos de ce format font 60–70 s.
 - Ensuite : partenariats voyage (assurance, eSIM, langues), puis une série « partie 2 » sponsorisable.
+
+## 8. Vague 2 : sujets qui accrochent (ego, corps, argent, interdits)
+
+Le principe : chaque sujet doit faire se comparer le spectateur (« et moi ? ») ou parler d'un interdit qui le concerne. On reste sur des **chiffres sourcés** et des **lois réelles** : c'est ce qui fait débattre sans se faire bloquer.
+
+| # | Sujet | Accroche | Ce qui fait rester | Source à utiliser |
+|---|---|---|---|---|
+| 2 ✅ | **Taille moyenne des hommes et des femmes** *(prête)* | « Tu fais plus ou moins que la moyenne de ton pays ? » | Comparaison perso + fierté nationale | NCD-RisC / The Lancet |
+| 3 | **Les pays où il y a plus de femmes que d'hommes** | « Dans ce pays, il y a bien plus de femmes que d’hommes… » | Les mecs veulent savoir où aller 😅 | ONU, World Population Prospects |
+| 4 | **Combien tu gagnes au SMIC dans chaque pays** | « En France tu gagnes 1 400 €… au Luxembourg, regarde. » | Argent + jalousie | Eurostat, OIT |
+| 5 | **Ce que tu risques avec du cannabis selon le pays** | « Ici c'est légal… là-bas, c'est la peine de mort. » | Interdit + peur | Textes de loi, ONUDC |
+| 6 | **Les pays où l'alcool est interdit** | « Ramène une bière dans ce pays… et c'est la prison. » | Interdit + voyage | Lois nationales |
+| 7 | **L'âge légal pour boire dans chaque pays** | « En Allemagne, tu peux boire une bière à 16 ans. » | Comparaison + nostalgie | OMS |
+| 8 | **Combien coûte une bière / un kebab dans chaque pays** | « Ta bière à 8 € à Paris… coûte 1 € ici. » | Argent + voyage | Numbeo (indiquer la date) |
+| 9 | **Âge moyen du mariage par pays** | « Dans ce pays, 30 ans et pas marié, c'est la honte. » | Pression sociale, débat | ONU |
+| 10 | **Les pays où on travaille le plus d'heures** | « Ici, la semaine de 35 h n'existe pas. » | Argent + jalousie | OCDE |
+| 11 | **Le prix d'un mariage / de la dot** | « Dans ce pays, pour te marier, il faut payer… ça. » | Argent + couple, ça fait réagir | Sources nationales, presse |
+| 12 | **Les pays les plus riches par habitant** | « Le pays le plus riche du monde est plus petit que Paris. » | Argent + surprise | FMI, Banque mondiale |
+
+**Les règles pour ne pas se faire couper par TikTok :**
+- Drogues et alcool : toujours sous l'angle **loi / risque / prix**, jamais « comment en trouver » ni montrer de consommation.
+- Filles : on parle de **chiffres** (taille, démographie, âge du mariage), **jamais de classement physique** (« les plus belles femmes »). C'est signalé en masse et ça attire des commentaires toxiques.
+- Pas de contenu sexuel. Avec le public jeune de TikTok, c'est un bannissement assuré.
+- Toujours afficher la source à l'écran (le moteur le fait avec le champ `"source"`). Ça coupe court aux « c'est faux ».

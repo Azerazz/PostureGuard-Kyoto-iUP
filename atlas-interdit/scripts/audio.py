@@ -93,11 +93,14 @@ T = [b['lines'][0]['s'] for b in scenes]
 TOUT = blocks[-1]['lines'][0]['s']
 W_ = whoosh(); P_ = pop(); TH_ = thud(); D_ = ding()
 add(sfx, P_, 0.0, 0.5)
-add(sfx, TH_, blocks[0]['lines'][0]['e'] - 0.55 + 0.12, 0.9)          # tampon du hook
+stamp_of = lambda o: o.get('stamp', ep.get('stamp', 'INTERDIT'))       # même règle que render.mjs
+if stamp_of(ep['hook']):
+    add(sfx, TH_, blocks[0]['lines'][0]['e'] - 0.55 + 0.12, 0.9)      # tampon du hook
 for k, tk in enumerate(T):
     add(sfx, W_, tk - 0.55, 0.55)                                        # transition / avion
     add(sfx, P_, tk + 0.35 + 0.42, 0.55)                                 # objet qui atterrit
-    add(sfx, TH_, scenes[k]['lines'][0]['e'] - 0.25 + 0.12, 0.9)          # tampon INTERDIT
+    if stamp_of(ep['scenes'][k]):
+        add(sfx, TH_, scenes[k]['lines'][0]['e'] - 0.25 + 0.12, 0.9)      # tampon
     if len(scenes[k]['lines']) > 1:
         add(sfx, D_, scenes[k]['lines'][1]['s'], 0.22)                    # étiquette rouge
 add(sfx, W_, TOUT - 0.55, 0.55)

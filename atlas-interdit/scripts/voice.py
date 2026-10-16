@@ -57,6 +57,7 @@ def synth(text, n):
     """Renvoie (audio 44,1 kHz coupé, liste de (début, fin) des mots prononcés ou None)."""
     if EDGE:
         mp3 = f'{out}/lines/{n:02d}.mp3'
+        text = re.sub(r'\b(\d)m(\d{2})\b', r'\1 mètre \2', text)  # « 1m80 » → « 1 mètre 80 »
         for attempt in range(4):
             try:
                 bounds = asyncio.run(edge_synth(text, mp3)); break

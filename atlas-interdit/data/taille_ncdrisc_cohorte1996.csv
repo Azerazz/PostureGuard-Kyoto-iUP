@@ -1,0 +1,201 @@
+pays,code,homme_cm,femme_cm
+Netherlands,NLD,182.5,168.7
+Belgium,BEL,181.7,165.5
+Estonia,EST,181.6,168.7
+Latvia,LVA,181.4,169.8
+Denmark,DNK,181.4,167.2
+Bosnia and Herzegovina,BIH,180.9,165.8
+Croatia,HRV,180.8,165.6
+Serbia,SRB,180.6,167.7
+Iceland,ISL,180.5,165.9
+Czechia,CZE,180.1,168.5
+Germany,DEU,179.9,165.9
+Slovenia,SVN,179.8,166.1
+Norway,NOR,179.7,165.6
+France,FRA,179.7,164.9
+Sweden,SWE,179.7,165.7
+Finland,FIN,179.6,165.9
+Slovakia,SVK,179.5,167.5
+Australia,AUS,179.2,165.9
+Lithuania,LTU,179.0,166.6
+Ireland,IRL,178.9,165.1
+Ukraine,UKR,178.5,166.3
+Belarus,BLR,178.4,166.3
+Switzerland,CHE,178.4,163.5
+North Macedonia,MKD,178.3,159.8
+Montenegro,MNE,178.3,164.9
+Bulgaria,BGR,178.2,164.8
+Canada,CAN,178.1,163.9
+Luxembourg,LUX,177.9,164.4
+Italy,ITA,177.8,164.6
+New Zealand,NZL,177.7,164.9
+United Kingdom,GBR,177.5,164.4
+French Polynesia,PYF,177.4,164.5
+Austria,AUT,177.4,164.6
+Poland,POL,177.3,164.6
+Greece,GRC,177.3,164.9
+Hungary,HUN,177.3,163.7
+United States,USA,177.1,163.5
+Grenada,GRD,177.0,164.5
+Israel,ISR,176.9,161.8
+Tonga,TON,176.8,165.5
+Spain,ESP,176.6,163.4
+Russia,RUS,176.5,165.3
+Dominica,DMA,176.3,164.3
+Andorra,AND,176.1,162.9
+American Samoa,ASM,176.0,164.5
+Barbados,BRB,175.9,165.3
+Niue,NIU,175.8,164.8
+Moldova,MDA,175.5,163.2
+Tokelau,TKL,175.3,162.5
+Cyprus,CYP,175.0,162.3
+South Korea,KOR,174.9,162.3
+Greenland,GRL,174.9,161.5
+Cook Islands,COK,174.8,163.2
+Romania,ROU,174.7,162.7
+Argentina,ARG,174.6,159.2
+Jamaica,JAM,174.5,163.1
+Taiwan,TWN,174.5,161.5
+Lebanon,LBN,174.4,162.4
+Samoa,WSM,174.4,162.0
+Georgia,GEO,174.3,163.0
+Seychelles,SYC,174.2,162.1
+Turkey,TUR,174.2,160.5
+Tunisia,TUN,174.0,160.4
+Fiji,FJI,173.9,161.7
+Trinidad and Tobago,TTO,173.7,160.6
+Hong Kong,HKG,173.6,159.0
+Iran,IRN,173.6,159.7
+Brazil,BRA,173.6,160.9
+Libya,LBY,173.5,162.1
+Uruguay,URY,173.4,162.1
+Albania,ALB,173.4,161.8
+Malta,MLT,173.3,160.9
+Cape Verde,CPV,173.2,161.6
+Senegal,SEN,173.1,162.5
+Portugal,PRT,172.9,163.0
+Paraguay,PRY,172.8,159.9
+Saint Vincent and the Grenadines,VCT,172.8,160.7
+Dominican Republic,DOM,172.7,159.0
+Bahamas,BHS,172.7,160.7
+Suriname,SUR,172.7,160.7
+Antigua and Barbuda,ATG,172.7,160.7
+Bermuda,BMU,172.7,160.7
+Haiti,HTI,172.6,158.7
+Singapore,SGP,172.6,160.3
+Palestine,PSE,172.1,158.8
+Puerto Rico,PRI,172.1,159.2
+Kuwait,KWT,172.1,159.4
+Armenia,ARM,172.0,158.1
+Cuba,CUB,172.0,158.0
+North Korea,PRK,172.0,159.0
+Turkmenistan,TKM,172.0,161.7
+Saint Lucia,LCA,171.9,162.3
+China,CHN,171.8,159.7
+Chile,CHL,171.8,159.4
+Botswana,BWA,171.6,161.4
+Venezuela,VEN,171.6,157.4
+Tajikistan,TJK,171.3,157.3
+Kyrgyzstan,KGZ,171.2,159.4
+Kazakhstan,KAZ,171.1,159.6
+Mali,MLI,171.1,160.5
+Jordan,JOR,171.0,158.8
+Japan,JPN,170.8,158.3
+Mauritius,MUS,170.5,157.2
+Qatar,QAT,170.5,159.4
+United Arab Emirates,ARE,170.5,158.7
+Chad,TCD,170.4,160.2
+Iraq,IRQ,170.4,158.7
+Syria,SYR,170.4,158.6
+Morocco,MAR,170.4,157.8
+Guyana,GUY,170.2,157.9
+Algeria,DZA,170.1,159.1
+El Salvador,SLV,169.8,154.5
+Azerbaijan,AZE,169.7,158.3
+Tuvalu,TUV,169.6,158.1
+Kenya,KEN,169.6,158.2
+Saint Kitts and Nevis,KNA,169.6,159.2
+Colombia,COL,169.5,156.9
+Uzbekistan,UZB,169.4,157.8
+Burkina Faso,BFA,169.3,160.2
+Kiribati,KIR,169.2,157.0
+Thailand,THA,169.2,157.9
+Oman,OMN,169.2,157.2
+Mongolia,MNG,169.1,158.2
+Mexico,MEX,169.0,156.8
+Costa Rica,CRI,168.9,156.4
+Ghana,GHA,168.8,157.9
+Belize,BLZ,168.7,156.9
+Zimbabwe,ZWE,168.6,158.2
+Micronesia (country),FSM,168.5,156.1
+Panama,PAN,168.5,155.5
+Eritrea,ERI,168.4,156.4
+Togo,TGO,168.3,158.3
+Eswatini,SWZ,168.1,158.6
+Vanuatu,VUT,168.1,158.2
+Gabon,GAB,167.9,158.8
+Guinea-Bissau,GNB,167.9,158.2
+Malaysia,MYS,167.9,156.3
+Nauru,NRU,167.8,154.0
+Cameroon,CMR,167.8,158.8
+Bahrain,BHR,167.7,156.7
+Palau,PLW,167.7,156.2
+Maldives,MDV,167.7,155.0
+Niger,NER,167.7,158.3
+Saudi Arabia,SAU,167.7,155.9
+Guinea,GIN,167.5,157.8
+Congo,COG,167.4,157.6
+Sao Tome and Principe,STP,167.4,158.9
+Equatorial Guinea,GNQ,167.4,157.3
+Angola,AGO,167.3,157.3
+Ecuador,ECU,167.1,154.2
+Benin,BEN,167.1,156.2
+Namibia,NAM,167.0,158.8
+Pakistan,PAK,166.9,153.8
+Bolivia,BOL,166.8,153.9
+Democratic Republic of Congo,COD,166.8,155.2
+Nicaragua,NIC,166.7,154.4
+Egypt,EGY,166.7,157.3
+South Africa,ZAF,166.7,158.0
+Central African Republic,CAF,166.7,158.0
+Burundi,BDI,166.6,154.0
+Sudan,SDN,166.6,156.0
+Somalia,SOM,166.6,156.1
+Djibouti,DJI,166.6,156.1
+Cote d'Ivoire,CIV,166.5,158.1
+Zambia,ZMB,166.5,155.8
+Honduras,HND,166.4,153.8
+Ethiopia,ETH,166.2,155.7
+Comoros,COM,166.2,155.6
+Nigeria,NGA,165.9,156.3
+Sri Lanka,LKA,165.7,154.6
+Uganda,UGA,165.6,156.7
+Lesotho,LSO,165.6,155.7
+Gambia,GMB,165.4,160.9
+Bhutan,BTN,165.3,153.6
+Afghanistan,AFG,165.3,155.1
+Peru,PER,165.2,152.9
+Brunei,BRN,165.0,154.0
+India,IND,164.9,152.6
+Tanzania,TZA,164.8,155.9
+Mozambique,MOZ,164.8,154.0
+Myanmar,MMR,164.7,154.4
+Vietnam,VNM,164.4,153.6
+Sierra Leone,SLE,164.4,156.6
+Solomon Islands,SLB,164.1,154.4
+Bangladesh,BGD,163.8,150.8
+Liberia,LBR,163.7,155.7
+Papua New Guinea,PNG,163.6,154.9
+Indonesia,IDN,163.6,152.8
+Guatemala,GTM,163.4,149.4
+Cambodia,KHM,163.3,152.9
+Mauritania,MRT,163.3,157.7
+Philippines,PHL,163.2,149.6
+Marshall Islands,MHL,162.8,151.3
+Rwanda,RWA,162.7,154.8
+Nepal,NPL,162.3,150.9
+Malawi,MWI,162.2,154.4
+Madagascar,MDG,161.5,151.2
+Laos,LAO,160.5,151.3
+Yemen,YEM,159.9,154.0
+East Timor,TLS,159.8,151.2

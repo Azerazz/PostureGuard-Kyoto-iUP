@@ -1,0 +1,24 @@
+{
+  "title": "Les 36 questions pour tomber amoureux",
+  "voice": "fr_FR-siwis-medium",
+  "lengthScale": 0.9,
+  "gap": 0.22,
+  "scenes": [
+    {"id": "hook", "say": "Des chercheurs ont trouvé trente-six questions capables de rapprocher deux inconnus en seulement quarante-cinq minutes.", "sub": "Des chercheurs ont trouvé 36 questions capables de rapprocher deux inconnus en seulement 45 minutes."},
+    {"id": "malik", "say": "Et Malik compte bien les tester ce soir… sur Jade.", "sub": "Et Malik compte bien les tester ce soir… sur Jade."},
+    {"id": "lab", "say": "En mille-neuf-cent-quatre-vingt-dix-sept, le psychologue Arthur Aron a réuni des étudiants qui ne se connaissaient pas.", "sub": "En 1997, le psychologue Arthur Aron a réuni des étudiants qui ne se connaissaient pas."},
+    {"id": "cards", "say": "Par deux, ils devaient se poser trente-six questions… de plus en plus intimes.", "sub": "Par deux, ils devaient se poser 36 questions… de plus en plus intimes."},
+    {"id": "q1", "say": "Ça commence tranquille : avec qui aimerais-tu dîner, si tu pouvais choisir n'importe qui ?", "sub": "Ça commence tranquille : avec qui aimerais-tu dîner, si tu pouvais choisir n'importe qui ?"},
+    {"id": "q2", "say": "Puis ça monte : quand as-tu pleuré devant quelqu'un pour la dernière fois ?", "sub": "Puis ça monte : quand as-tu pleuré devant quelqu'un pour la dernière fois ?"},
+    {"id": "result", "say": "Résultat : ces binômes se sentaient bien plus proches que ceux qui avaient juste bavardé.", "sub": "Résultat : ces binômes se sentaient bien plus proches que ceux qui avaient juste bavardé."},
+    {"id": "married", "say": "Deux participants se seraient même mariés quelques mois plus tard.", "sub": "Deux participants se seraient même mariés quelques mois plus tard."},
+    {"id": "secret", "say": "Le secret ? Se confier petit à petit, chacun son tour.", "sub": "Le secret ? Se confier petit à petit, chacun son tour."},
+    {"id": "brain", "say": "Et ton cerveau prend cette confiance pour de l'intimité.", "sub": "Et ton cerveau prend cette confiance pour de l'intimité."},
+    {"id": "nyt", "say": "En deux-mille-quinze, une autrice a testé les questions dans un bar avec une simple connaissance, et l'a raconté dans le New York Times.", "sub": "En 2015, une autrice a testé les questions dans un bar avec une simple connaissance, et l'a raconté dans le New York Times."},
+    {"id": "love", "say": "Et devine quoi : ils sont tombés amoureux.", "sub": "Et devine quoi : ils sont tombés amoureux."},
+    {"id": "warning", "say": "Mais attention : ça ne marche pas si tu forces, ni si l'autre ne joue pas le jeu.", "sub": "Mais attention : ça ne marche pas si tu forces, ni si l'autre ne joue pas le jeu."},
+    {"id": "twist", "say": "Ce soir, Malik pose sa première question… et c'est lui qui finit par raconter toute sa vie.", "sub": "Ce soir, Malik pose sa première question… et c'est lui qui finit par raconter toute sa vie."},
+    {"id": "cta", "say": "Envoie cette vidéo à la personne à qui tu poserais la question trente-six.", "sub": "Envoie cette vidéo à la personne à qui tu poserais la question 36."},
+    {"id": "outro", "say": "Et abonne-toi : dans la partie deux, je te donne la liste complète.", "sub": "Et abonne-toi : dans la partie 2, je te donne la liste complète."}
+  ]
+}

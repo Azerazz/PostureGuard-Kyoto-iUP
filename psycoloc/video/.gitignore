@@ -1,0 +1,5 @@
+node_modules/
+out/
+*.onnx
+*.onnx.json
+public/*.wav

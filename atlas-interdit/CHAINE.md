@@ -98,7 +98,7 @@ Légende : 🔥 très fort potentiel · ⚡ fort · 💡 pour varier.
 
 ## 4. Publier la vidéo 1
 
-**Fichier** : `build/ep01/ep01-final.mp4`
+**Fichier** : `livrables/atlas-interdit-ep01-cadeaux-interdits.mp4`
 
 **Légende (à copier) :**
 ```

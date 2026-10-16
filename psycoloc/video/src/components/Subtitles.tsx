@@ -1,12 +1,15 @@
 import React, {useMemo} from 'react';
-import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {C, FONT_SUB, OL} from '../theme';
+import {useCurrentFrame, useVideoConfig} from 'remotion';
+import {FONT_SUB} from '../theme';
 
-type Word = {t: string; s: number; e: number};
+type Word = {t: string; s: number; e: number; k?: boolean};
 type Scene = {id: string; start: number; end: number; words: Word[]};
 
-const MAX_WORDS = 3;
-const MAX_CHARS = 18;
+// Style « TikTok pédago » : 1-2 mots à la fois, blanc à fin contour, mots-clés en jaune.
+const MAX_WORDS = 2;
+const MAX_CHARS = 14;
+const YELLOW = '#FFD84A';
+const STROKE = '#1B1B1B';
 
 const buildChunks = (scenes: Scene[]) => {
   const chunks: {words: Word[]; start: number; end: number}[] = [];
@@ -18,7 +21,8 @@ const buildChunks = (scenes: Scene[]) => {
     };
     for (const w of sc.words) {
       const len = cur.reduce((n, x) => n + x.t.length + 1, 0) + w.t.length;
-      if (cur.length >= MAX_WORDS || (cur.length && len > MAX_CHARS)) flush();
+      // on ne mélange pas mot-clé et mot normal dans un même bloc
+      if (cur.length >= MAX_WORDS || (cur.length && (len > MAX_CHARS || !!cur[0].k !== !!w.k))) flush();
       cur.push(w);
       if (/[.,?!:…]$/.test(w.t)) flush();
     }
@@ -26,54 +30,41 @@ const buildChunks = (scenes: Scene[]) => {
   }
   chunks.forEach((c, i) => {
     const last = c.words[c.words.length - 1];
-    c.end = i + 1 < chunks.length ? Math.min(chunks[i + 1].start, last.e + 0.6) : last.e + 0.6;
+    c.end = i + 1 < chunks.length ? Math.min(chunks[i + 1].start, last.e + 0.5) : last.e + 0.5;
   });
   return chunks;
 };
 
-export const Subtitles: React.FC<{scenes: Scene[]; y?: number}> = ({scenes, y = 1410}) => {
+export const Subtitles: React.FC<{scenes: Scene[]; y?: number}> = ({scenes, y = 1275}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = f / fps;
   const chunks = useMemo(() => buildChunks(scenes), [scenes]);
   const chunk = chunks.find((c) => t >= c.start && t < c.end);
   if (!chunk) return null;
-  const pop = spring({frame: f - Math.round(chunk.start * fps), fps, config: {damping: 10, stiffness: 220}});
+  const age = f - chunk.start * fps;
+  const scale = age < 3 ? 0.92 + 0.08 * (age / 3) : 1;
   return (
     <div
       style={{
         position: 'absolute',
-        left: 50,
-        right: 50,
+        left: 40,
+        right: 40,
         top: y,
-        transform: `translateY(-50%) scale(${0.7 + 0.3 * pop})`,
+        transform: `translateY(-50%) scale(${scale})`,
         textAlign: 'center',
         fontFamily: FONT_SUB,
         fontWeight: 900,
-        fontSize: 96,
-        lineHeight: 1.1,
-        letterSpacing: -1,
+        fontSize: 92,
+        lineHeight: 1.05,
+        letterSpacing: -0.5,
+        color: chunk.words[0].k ? YELLOW : '#fff',
+        WebkitTextStroke: `9px ${STROKE}`,
+        paintOrder: 'stroke fill',
+        textShadow: `0 5px 0 ${STROKE}, 0 8px 14px rgba(0,0,0,0.35)`,
       }}
     >
-      {chunk.words.map((w, i) => {
-        const active = t >= w.s && (i === chunk.words.length - 1 || t < chunk.words[i + 1].s);
-        return (
-          <span
-            key={i}
-            style={{
-              display: 'inline-block',
-              margin: '0 20px',
-              color: active ? C.yellow : '#fff',
-              WebkitTextStroke: `18px ${OL}`,
-              paintOrder: 'stroke fill',
-              textShadow: `0 8px 0 ${OL}`,
-              transform: active ? 'scale(1.08)' : undefined,
-            }}
-          >
-            {w.t}
-          </span>
-        );
-      })}
+      {chunk.words.map((w) => w.t).join(' ')}
     </div>
   );
 };

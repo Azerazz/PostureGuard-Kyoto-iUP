@@ -1,10 +1,12 @@
 import React from 'react';
 import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {C, H, OL, W} from '../theme';
+import {BG, C, H, OL, W} from '../theme';
 
-export const Sunburst: React.FC<{a: string; b: string; speed?: number}> = ({a, b, speed = 0.15}) => {
+export const FLOOR_Y = 1180;
+
+export const Sunburst: React.FC<{a?: string; b?: string; speed?: number}> = ({a = BG.beige, b = BG.beigeLight, speed = 0.12}) => {
   const f = useCurrentFrame();
-  const rays = 18;
+  const rays = 20;
   return (
     <AbsoluteFill style={{background: a, overflow: 'hidden'}}>
       <svg width={W} height={H} viewBox={`${-W / 2} ${-H / 2} ${W} ${H}`}>
@@ -21,30 +23,38 @@ export const Sunburst: React.FC<{a: string; b: string; speed?: number}> = ({a, b
   );
 };
 
+/** Fond uni avec grand disque plus clair au centre. */
+export const Vignette: React.FC<{color: string; disc: string; y?: number}> = ({color, disc, y = 820}) => (
+  <AbsoluteFill style={{background: color}}>
+    <div style={{position: 'absolute', left: 540 - 520, top: y - 520, width: 1040, height: 1040, borderRadius: '50%', background: disc}} />
+  </AbsoluteFill>
+);
+
 export const Pastel: React.FC<{color: string; dot?: string}> = ({color, dot}) => (
   <AbsoluteFill
     style={{
       background: color,
-      backgroundImage: dot ? `radial-gradient(${dot} 9px, transparent 10px)` : undefined,
+      backgroundImage: dot ? `radial-gradient(${dot} 8px, transparent 9px)` : undefined,
       backgroundSize: '90px 90px',
     }}
   />
 );
 
-const FLOOR_Y = 1380;
-
-const Floor: React.FC<{color?: string; dark?: string}> = ({color = C.wood, dark = C.woodDark}) => (
-  <div style={{position: 'absolute', left: 0, top: FLOOR_Y, width: W, height: H - FLOOR_Y, background: color, borderTop: `10px solid ${OL}`}}>
-    {Array.from({length: 7}).map((_, i) => (
-      <div key={i} style={{position: 'absolute', left: 0, top: 30 + i * 80, width: W, height: 6, background: dark, opacity: 0.6}} />
-    ))}
-    {Array.from({length: 14}).map((_, i) => (
-      <div key={`v${i}`} style={{position: 'absolute', left: ((i * 263) % W), top: 36 + Math.floor(i / 2) * 80, width: 6, height: 74, background: dark, opacity: 0.6}} />
-    ))}
-  </div>
+/** Parquet façon briques décalées. */
+export const Floor: React.FC<{y?: number; color?: string; line?: string}> = ({y = FLOOR_Y, color = BG.floor, line = BG.floorLine}) => (
+  <svg style={{position: 'absolute', left: 0, top: y}} width={W} height={H - y}>
+    <defs>
+      <pattern id="planks" width="300" height="140" patternUnits="userSpaceOnUse">
+        <rect width="300" height="140" fill={color} />
+        <path d="M0,70 H300 M0,140 H300 M120,0 V70 M270,70 V140 M30,70 V140" stroke={line} strokeWidth={5} />
+      </pattern>
+    </defs>
+    <rect width={W} height={H - y} fill="url(#planks)" />
+    <rect width={W} height={26} fill="#fff" stroke={OL} strokeWidth={6} />
+  </svg>
 );
 
-export const Window: React.FC<{x: number; y: number; w: number; h: number; night?: boolean; curtain?: string}> = ({x, y, w, h, night, curtain = C.coral}) => {
+export const Window: React.FC<{x: number; y: number; w: number; h: number; night?: boolean; curtain?: string}> = ({x, y, w, h, night, curtain = '#3FA98F'}) => {
   const f = useCurrentFrame();
   return (
     <div style={{position: 'absolute', left: x, top: y, width: w, height: h}}>
@@ -52,125 +62,169 @@ export const Window: React.FC<{x: number; y: number; w: number; h: number; night
         style={{
           position: 'absolute',
           inset: 0,
-          background: night ? 'linear-gradient(#1F1B4D,#4A3F8C)' : 'linear-gradient(#9ED8FF,#D8F0FF)',
-          border: `10px solid ${OL}`,
-          borderRadius: 12,
+          background: night ? 'linear-gradient(#1C1E4A,#3B3C86)' : 'linear-gradient(#7FC4F5,#CDEBFF)',
+          border: `9px solid ${OL}`,
           overflow: 'hidden',
         }}
       >
-        {night ? (
-          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <circle cx={70} cy={30} r={12} fill="#FFF3B0" />
-            <circle cx={76} cy={26} r={11} fill="#2B2560" />
-            {[[20, 20], [40, 60], [80, 70], [25, 80], [55, 15]].map(([sx, sy], i) => (
-              <circle key={i} cx={sx} cy={sy} r={1.6} fill="#fff" opacity={0.5 + 0.5 * Math.sin(f / 8 + i)} />
-            ))}
-          </svg>
-        ) : (
-          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <ellipse cx={30 + ((f / 10) % 80)} cy={30} rx={14} ry={6} fill="#fff" />
-            <path d="M0,85 Q30,65 60,82 T100,78 L100,100 L0,100Z" fill="#8FD18F" />
-          </svg>
-        )}
-        <div style={{position: 'absolute', left: '50%', top: 0, bottom: 0, width: 10, background: OL, transform: 'translateX(-50%)'}} />
-        <div style={{position: 'absolute', top: '50%', left: 0, right: 0, height: 10, background: OL, transform: 'translateY(-50%)'}} />
+        <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+          {night ? (
+            [[20, 20], [40, 34], [80, 18], [62, 44], [12, 50]].map(([sx, sy], i) => (
+              <circle key={i} cx={sx} cy={sy} r={1.4} fill="#fff" opacity={0.5 + 0.5 * Math.sin(f / 8 + i)} />
+            ))
+          ) : (
+            <ellipse cx={20 + ((f / 12) % 90)} cy={26} rx={13} ry={5} fill="#fff" />
+          )}
+          <path d="M0,82 Q25,66 50,78 T100,72 L100,100 L0,100Z" fill={night ? '#4B3B8F' : '#6D5BB0'} />
+        </svg>
+        <div style={{position: 'absolute', left: '50%', top: 0, bottom: 0, width: 9, background: OL, transform: 'translateX(-50%)'}} />
+        <div style={{position: 'absolute', top: '50%', left: 0, right: 0, height: 9, background: OL, transform: 'translateY(-50%)'}} />
       </div>
       {[-1, 1].map((s) => (
         <div
           key={s}
           style={{
             position: 'absolute',
-            top: -24,
-            [s < 0 ? 'left' : 'right']: -40,
-            width: w * 0.28,
-            height: h + 50,
+            top: -16,
+            [s < 0 ? 'left' : 'right']: -34,
+            width: w * 0.3,
+            height: h + 36,
             background: curtain,
-            border: `8px solid ${OL}`,
-            borderRadius: '0 0 30px 30px',
+            border: `7px solid ${OL}`,
+            borderRadius: s < 0 ? '0 0 60px 0' : '0 0 0 60px',
           }}
         />
       ))}
-      <div style={{position: 'absolute', top: -40, left: -70, right: -70, height: 22, background: C.woodDark, border: `7px solid ${OL}`, borderRadius: 12}} />
+      <div style={{position: 'absolute', top: -34, left: -60, right: -60, height: 20, background: '#9A6A44', border: `6px solid ${OL}`, borderRadius: 10}} />
     </div>
   );
 };
 
-export const Room: React.FC<{wall: string; stripe?: string; night?: boolean; window?: boolean; couch?: string; lamp?: boolean; frame?: boolean}> = ({
-  wall,
-  stripe,
-  night = false,
-  window = true,
-  couch,
-  lamp,
-  frame,
-}) => (
-  <AbsoluteFill
-    style={{
-      background: wall,
-      backgroundImage: stripe ? `repeating-linear-gradient(90deg, ${stripe} 0 40px, transparent 40px 110px)` : undefined,
-    }}
-  >
-    {window && <Window x={600} y={230} w={330} h={400} night={night} />}
+export const PictureFrame: React.FC<{x: number; y: number; w: number; h: number; rotate?: number; children?: React.ReactNode}> = ({x, y, w, h, rotate = -3, children}) => (
+  <div style={{position: 'absolute', left: x, top: y, width: w, height: h, background: '#A5774F', border: `7px solid ${OL}`, padding: 14, boxSizing: 'border-box', transform: `rotate(${rotate}deg)`}}>
+    <div style={{width: '100%', height: '100%', background: '#FFF8EC', border: `5px solid ${OL}`, overflow: 'hidden', position: 'relative'}}>{children}</div>
+  </div>
+);
+
+export const Lamp: React.FC<{x: number; y: number}> = ({x, y}) => (
+  <div style={{position: 'absolute', left: x, top: y}}>
+    <div style={{width: 150, height: 100, background: '#F6C445', border: `7px solid ${OL}`, clipPath: 'polygon(20% 0, 80% 0, 100% 100%, 0 100%)'}} />
+    <div style={{width: 12, height: 150, background: OL, marginLeft: 69}} />
+  </div>
+);
+
+export const Room: React.FC<{
+  wall: string;
+  stripe: string;
+  night?: boolean;
+  window?: 'left' | 'right' | false;
+  curtain?: string;
+  couch?: string;
+  lamp?: boolean;
+  frame?: React.ReactNode;
+  table?: boolean;
+}> = ({wall, stripe, night = false, window = 'right', curtain, couch, lamp, frame, table}) => (
+  <AbsoluteFill style={{background: wall, backgroundImage: `repeating-linear-gradient(90deg, ${stripe} 0 34px, transparent 34px 92px)`}}>
+    {window && <Window x={window === 'right' ? 640 : 110} y={190} w={300} h={380} night={night} curtain={curtain} />}
     {frame && (
-      <div style={{position: 'absolute', left: 130, top: 300, width: 230, height: 180, background: C.yellow, border: `9px solid ${OL}`, borderRadius: 10, transform: 'rotate(-4deg)'}}>
-        <svg width="100%" height="100%" viewBox="0 0 100 80">
-          <path d="M10,70 L35,35 L55,55 L70,40 L90,70Z" fill={C.mint} stroke={OL} strokeWidth={3} />
-          <circle cx={72} cy={22} r={9} fill={C.coral} stroke={OL} strokeWidth={3} />
-        </svg>
-      </div>
+      <PictureFrame x={window === 'left' ? 690 : 130} y={250} w={240} h={200}>
+        {frame}
+      </PictureFrame>
     )}
-    {lamp && (
-      <div style={{position: 'absolute', left: 90, top: 980}}>
-        <div style={{width: 180, height: 120, background: C.yellow, border: `8px solid ${OL}`, clipPath: 'polygon(18% 0, 82% 0, 100% 100%, 0 100%)'}} />
-        <div style={{width: 14, height: 280, background: OL, marginLeft: 83}} />
-      </div>
-    )}
-    <div style={{position: 'absolute', left: 0, top: FLOOR_Y - 40, width: W, height: 40, background: '#fff', borderTop: `8px solid ${OL}`}} />
-    <Floor />
+    {lamp && <Lamp x={window === 'left' ? 820 : 120} y={900} />}
     {couch && (
-      <div style={{position: 'absolute', left: 520, top: 1180, width: 520, height: 260}}>
-        <div style={{position: 'absolute', left: 30, top: 0, width: 460, height: 150, background: couch, border: `9px solid ${OL}`, borderRadius: '50px 50px 10px 10px'}} />
-        <div style={{position: 'absolute', left: 0, top: 110, width: 520, height: 120, background: couch, border: `9px solid ${OL}`, borderRadius: 40, filter: 'brightness(0.92)'}} />
+      <div style={{position: 'absolute', left: 500, top: 960, width: 560, height: 240}}>
+        <div style={{position: 'absolute', left: 30, top: 0, width: 500, height: 140, background: couch, border: `8px solid ${OL}`, borderRadius: '46px 46px 10px 10px'}} />
+        <div style={{position: 'absolute', left: 0, top: 104, width: 560, height: 110, background: couch, border: `8px solid ${OL}`, borderRadius: 36, filter: 'brightness(0.93)'}} />
       </div>
     )}
+    <Floor />
+    {table && <Tablecloth />}
   </AbsoluteFill>
 );
 
+/** Table avec nappe vichy rouge (devant les personnages : à placer après eux). */
+export const Tablecloth: React.FC<{y?: number}> = ({y = 1180}) => (
+  <div style={{position: 'absolute', left: -10, top: y, width: W + 20, height: 460}}>
+    <div style={{height: 26, background: '#F4E3C8', border: `7px solid ${OL}`}} />
+    <div
+      style={{
+        height: 430,
+        borderLeft: `7px solid ${OL}`,
+        borderRight: `7px solid ${OL}`,
+        borderBottom: `7px solid ${OL}`,
+        backgroundColor: '#fff',
+        backgroundImage:
+          'linear-gradient(90deg, rgba(232,80,91,0.55) 50%, transparent 50%), linear-gradient(rgba(232,80,91,0.55) 50%, transparent 50%)',
+        backgroundSize: '62px 62px',
+      }}
+    />
+  </div>
+);
+
 export const Lab: React.FC<{board?: React.ReactNode}> = ({board}) => (
-  <AbsoluteFill
-    style={{
-      background: '#F4F6FA',
-      backgroundImage:
-        'linear-gradient(#C9CFDB 6px, transparent 6px), linear-gradient(90deg, #C9CFDB 6px, transparent 6px)',
-      backgroundSize: '150px 80px, 150px 160px',
-      backgroundPosition: '0 0, 75px 0',
-    }}
-  >
-    <div style={{position: 'absolute', left: 70, top: 220, width: 620, height: 400, background: '#2F5D50', border: `12px solid ${OL}`, borderRadius: 16, boxShadow: `0 14px 0 ${OL}`}}>
+  <AbsoluteFill style={{background: '#F6F7F9'}}>
+    <svg width={W} height={FLOOR_Y} style={{position: 'absolute'}}>
+      <defs>
+        <pattern id="bricks" width="160" height="100" patternUnits="userSpaceOnUse">
+          <rect width="160" height="100" fill="#F6F7F9" />
+          <rect x="6" y="6" width="148" height="38" rx="6" fill="#fff" stroke="#AEB4BF" strokeWidth="4" />
+          <rect x="-74" y="56" width="148" height="38" rx="6" fill="#fff" stroke="#AEB4BF" strokeWidth="4" />
+          <rect x="86" y="56" width="148" height="38" rx="6" fill="#fff" stroke="#AEB4BF" strokeWidth="4" />
+        </pattern>
+      </defs>
+      <rect width={W} height={FLOOR_Y} fill="url(#bricks)" />
+    </svg>
+    <div style={{position: 'absolute', left: 60, top: 200, width: 640, height: 420, background: '#2F5A4C', border: `11px solid ${OL}`, borderRadius: 14}}>
       {board}
+      <div style={{position: 'absolute', left: 20, right: 20, bottom: -24, height: 16, background: '#C9935F', border: `5px solid ${OL}`}} />
     </div>
-    <div style={{position: 'absolute', left: 0, top: FLOOR_Y, width: W, height: H - FLOOR_Y, background: '#C7CDD8', borderTop: `10px solid ${OL}`}} />
+    {/* caméra sur trépied */}
+    <div style={{position: 'absolute', left: 900, top: 620}}>
+      <div style={{width: 130, height: 90, background: '#2E3440', border: `6px solid ${OL}`, borderRadius: 14, position: 'relative'}}>
+        <div style={{position: 'absolute', right: -30, top: 14, width: 56, height: 56, borderRadius: '50%', background: '#8FB5D6', border: `6px solid ${OL}`}} />
+        <div style={{position: 'absolute', left: 16, top: 16, width: 18, height: 18, borderRadius: '50%', background: '#E8505B'}} />
+      </div>
+      <svg width={160} height={420} style={{marginLeft: -15}}>
+        <path d="M80,0 L20,410 M80,0 L80,410 M80,0 L140,410" stroke="#555B66" strokeWidth={9} />
+      </svg>
+    </div>
+    <div style={{position: 'absolute', left: 0, top: FLOOR_Y, width: W, height: H - FLOOR_Y, background: '#CDD2DA', borderTop: `8px solid ${OL}`}} />
   </AbsoluteFill>
 );
 
 export const Bar: React.FC = () => {
   const f = useCurrentFrame();
   return (
-    <AbsoluteFill style={{background: C.plum}}>
-      <svg width={W} height={500} style={{position: 'absolute', top: 120}}>
-        <path d="M-20,60 Q270,200 540,90 T1100,80" fill="none" stroke={OL} strokeWidth={6} />
+    <AbsoluteFill style={{background: '#3A2A4A'}}>
+      <svg width={W} height={400} style={{position: 'absolute', top: 60}}>
+        <path d="M-20,40 Q270,170 540,70 T1100,60" fill="none" stroke={OL} strokeWidth={5} />
         {Array.from({length: 13}).map((_, i) => {
           const x = i * 90;
-          const t = x / 1080;
-          const y = 60 + Math.sin(t * Math.PI * 2) * 60 + 40;
-          return <circle key={i} cx={x} cy={y} r={16} fill={C.yellow} opacity={0.6 + 0.4 * Math.sin(f / 5 + i)} stroke={OL} strokeWidth={4} />;
+          const y = 60 + Math.sin((x / 1080) * Math.PI * 2) * 50 + 30;
+          return <circle key={i} cx={x} cy={y} r={14} fill="#FFD84A" opacity={0.6 + 0.4 * Math.sin(f / 5 + i)} stroke={OL} strokeWidth={4} />;
         })}
       </svg>
-      {[0, 1, 2, 3].map((i) => (
-        <div key={i} style={{position: 'absolute', left: 90 + i * 240, top: 980, width: 46, height: 160, background: [C.mint, C.coral, C.yellow, C.blue][i], border: `7px solid ${OL}`, borderRadius: '16px 16px 6px 6px'}} />
+      <div style={{position: 'absolute', left: 0, top: 560, width: W, height: 26, background: '#7A5236', border: `6px solid ${OL}`}} />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <div key={i} style={{position: 'absolute', left: 80 + i * 200, top: 446, width: 40, height: 114, background: [C.mint, C.coral, '#F6C445', C.blue, C.pink][i], border: `6px solid ${OL}`, borderRadius: '14px 14px 4px 4px'}} />
       ))}
-      <div style={{position: 'absolute', left: 0, top: 1140, width: W, height: 40, background: C.woodDark, borderTop: `9px solid ${OL}`, borderBottom: `9px solid ${OL}`}} />
-      <div style={{position: 'absolute', left: 0, top: 1180, width: W, height: H - 1180, background: '#5A3550'}} />
+      <Floor y={FLOOR_Y} color="#7A5236" line="#5E3D27" />
     </AbsoluteFill>
   );
 };
+
+/** Cône de projecteur (scènes « révélation »). */
+export const Spotlight: React.FC<{x: number; w?: number}> = ({x, w = 520}) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: x - w / 2,
+      top: 0,
+      width: w,
+      height: 1500,
+      background: 'linear-gradient(rgba(255,255,255,0.45), rgba(255,255,255,0.12))',
+      clipPath: 'polygon(38% 0, 62% 0, 100% 100%, 0 100%)',
+    }}
+  />
+);

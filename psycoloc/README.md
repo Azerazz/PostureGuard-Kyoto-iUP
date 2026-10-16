@@ -8,7 +8,7 @@ Chaîne TikTok (+ Reels + Shorts) de vulgarisation psychologique : chaque vidéo
 
 | Fichier | Usage |
 |---|---|
-| `video1_36-questions.mp4` | Vidéo 1, prête à publier (1080×1920, 67 s) |
+| `video1_36-questions.mp4` | Vidéo 1, prête à publier (1080×1920, 68 s, son normalisé −14 LUFS) |
 | `Cover.png` | Couverture à choisir dans TikTok pour la vidéo 1 |
 | `ProfilePicture.png` | Photo de profil (affichée en rond) |
 | `LogoFull.png` | Logo complet (bannière, Instagram, YouTube) |
@@ -136,24 +136,25 @@ Créneaux conseillés (France) : 12 h-13 h et 18 h-21 h. Ne jamais supprimer une
 
 ## 6. Produire les vidéos suivantes (`video/`)
 
-Tout est généré par code (images, animation, voix, musique) → aucune licence à payer.
+Tout est généré par code (images, animation, voix, musique). Le style imite les vidéos « psycho cartoon » qui marchent : grosses têtes rondes, yeux mi-clos, articulations rondes, murs rayés, parquet, nappe vichy, sous-titres 1-2 mots (blanc + mots-clés en jaune), voix masculine rapide (~4,5 mots/s).
 
 ```bash
 cd psycoloc/video
 npm install
-pip install piper-tts faster-whisper numpy
-# voix : https://huggingface.co/rhasspy/piper-voices (fr_FR-siwis-medium)
+pip install edge-tts numpy          # (+ piper-tts faster-whisper pour le mode hors-ligne)
 
-# 1. écrire le script dans script.json (say = texte lu, sub = sous-titres)
-# 2. voix + timeline des mots
-python3 tools/build_audio.py . chemin/vers/fr_FR-siwis-medium.onnx
+# 1. écrire le script dans script.json (*mot* = mot-clé en jaune) — viser ~300 mots pour ~65 s
+# 2. voix + horodatage de chaque mot
+python3 tools/build_audio.py .
 # 3. musique originale + bruitages (durée affichée à l'étape 2)
-python3 tools/build_music.py . 67
+python3 tools/build_music.py . 68
 # 4. scènes : une fonction par id dans src/Scenes.tsx
 npx remotion studio            # aperçu interactif
 npx remotion render src/index.ts Video out.mp4
+# 5. volume normalisé pour TikTok
+ffmpeg -i out.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5 -c:a aac final.mp4
 ```
 
-**Améliorer la voix** : la voix Piper est correcte mais robotique par moments. Pour passer un cap, générer chaque phrase avec ElevenLabs (voix FR dynamique, offre payante à partir de quelques €/mois) et remplacer l'appel à Piper dans `tools/build_audio.py` par la lecture de ces fichiers — l'alignement des sous-titres reste automatique. C'est l'amélioration n°1 conseillée.
+**Voix** : `fr-FR-HenriNeural` accélérée (+38 %) et légèrement plus aiguë (+30 Hz), réglée pour coller au ton des vidéos de référence (≈ 145 Hz, ≈ 4,6 mots/s). `edge-tts` passe par le service de lecture d'Edge (non officiel) : pour un usage commercial durable, prendre la même voix via l'API officielle **Azure Speech** (palier gratuit généreux) ou une voix **ElevenLabs**. Pas de clonage de la voix d'un autre créateur.
 
 **Musique** : tu peux aussi ajouter un son tendance directement dans TikTok (volume ~10 %), ça aide la distribution.

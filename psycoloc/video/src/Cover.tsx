@@ -12,18 +12,17 @@ export const Cover: React.FC = () => {
   useFonts();
   return (
     <AbsoluteFill>
-      <Sunburst a={C.pink} b={C.pinkLight} speed={0} />
+      <Sunburst speed={0} />
       <BigText x={540} y={470} text="36" size={480} wobble={false} delay={-40} />
       <div
         style={{
           position: 'absolute',
-          top: 760,
-          left: 60,
+                    left: 60,
           right: 60,
           textAlign: 'center',
           fontFamily: FONT_TITLE,
           fontWeight: 700,
-          fontSize: 104,
+          fontSize: 104, top: 700,
           lineHeight: 1.05,
           color: '#fff',
           WebkitTextStroke: `18px ${OL}`,
@@ -32,8 +31,8 @@ export const Cover: React.FC = () => {
       >
         questions pour faire <span style={{color: C.yellow}}>tomber amoureux</span>
       </div>
-      <Character who="malik" x={330} y={1700} h={640} expr="wink" delay={-40} />
-      <Character who="jade" x={750} y={1700} h={640} expr="love" flip delay={-40} />
+      <Character who="malik" x={330} y={1640} h={760} expr="wink" delay={-40} />
+      <Character who="jade" x={750} y={1640} h={760} expr="love" flip delay={-40} />
       <Heart x={540} y={1170} size={150} beat={false} delay={-40} />
       <div style={{position: 'absolute', left: 40, top: 60}}>
         <LogoMark size={170} />

@@ -28,12 +28,12 @@ export const Video: React.FC = () => {
             <SceneWrap d={d}>
               <Scene d={d} />
             </SceneWrap>
-            {i > 0 && <Audio src={staticFile(DING.has(s.id) ? 'ding.wav' : 'pop.wav')} volume={DING.has(s.id) ? 0.22 : 0.3} />}
+            {i > 0 && <Audio src={staticFile(DING.has(s.id) ? 'ding.wav' : 'pop.wav')} volume={DING.has(s.id) ? 0.18 : 0.14} />}
           </Sequence>
         );
       })}
       <Subtitles scenes={scenes} />
-      <Audio src={staticFile('music.wav')} volume={0.11} />
+      <Audio src={staticFile('music.wav')} volume={0.09} />
       <Audio src={staticFile('voice.wav')} volume={1} />
     </AbsoluteFill>
   );
